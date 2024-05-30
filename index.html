@@ -1,0 +1,387 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+         :root { font-family: Arial; }
+         #hax { margin-bottom: 65px; }
+         #hax-2 { margin-bottom: 55px; }
+         * { --background-gray: #00000055; --background-yellow: #c99005; }
+         a { all: unset; cursor: pointer; transition: all 0.1s ease-in-out; }
+         a:hover { transform: scale(110%); box-shadow: 0px 0px 10px white; }
+         p { margin: 0; padding: 0; }
+         .page { display: grid; width: 100vw; grid-template-columns: 300px 1fr; gap: 3rem; }
+         .chapter { padding: 16px 48px; border-radius: 3rem; background-color: var(--background-gray); margin: auto 0px; text-align: center; width: 200px; }
+         .title-row { display: flex; flex-direction: row; gap: 32px; align-items: flex-end;}
+         .rectangle { width: 450px; background-color: var(--background-gray); display: flex; flex-direction: column; text-align: center; }
+         .rectangle-a { width: 450px; background-color: var(--background-yellow); display: flex; flex-direction: column; text-align: center; color: white; }
+         .content { padding: 16px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 16px; }
+         .content > a { border: 1px solid white; width: 500px; height: 50px; padding: 16px; border-radius: 3rem; max-width: 150px; display: flex; justify-content: center; align-items: center; }       .triangle { width: 0; height: 0; border-top: 30px solid var(--background-gray); border-right: 225px solid transparent; border-bottom: 0px solid transparent; border-left: 225px solid transparent; }
+         .triangle-a { width: 0; height: 0; border-top: 0px solid transparent; border-right: 225px solid transparent; border-bottom: 30px solid var(--background-yellow); border-left: 225px solid transparent; }
+         .whatever { display: flex; flex-direction: column; gap: 16px; }
+         .whatever-line { display: flex; flex-direction: row; gap: 30px; }
+         .whatever-title { display: flex; flex-direction: column; margin: 20px; }
+         .whatever-decoration { display: flex; flex-direction: row; }
+         .whatever-rect { width: 200px; height: 6px; background-color: #293b8f; }
+         .whatever-triangle { width: 0; height: 0; border-top: 0px solid transparent; border-right: 3px solid transparent; border-bottom: 8px solid #293b8f; border-left: 3px solid transparent; transform: rotate(90deg) translateX(-1px); }
+         .whatever-content { background-color: #293b8f; display: flex; align-items: center; justify-content: center; padding: 16px 32px; border-radius: 3rem; width: 200px; height: 50px; color: white; }
+      </style>
+   </head>
+   <body>
+      <section class="page">
+         <a class="chapter" id="hax">1. Management Process</a>
+         <div class="title-row">
+            <div class="title-item">
+               <div class="rectangle">
+                  <div class="content">
+                     <a href="#">1.1.1 Strategy, Vision & Mission</a>
+                     <a href="#">1.1.2 Financing & Funding</a>
+                  </div>
+                  <p><b>1.1 Strategic Planning & Controlling</b></p>
+               </div>
+               <div class='triangle'></div>
+            </div>
+            <div class="title-item">
+               <div class="rectangle">
+                  <div class="content">
+                     <a href="#">1.2.1 Quality Management Accreditation</a>
+                     <a href="#">1.2.2 Governance & Policy</a>
+                     <a href="#">1.2.3 Reporting & KPI</a>
+                     <a href="#">1.2.4 Healthy & Safety at Work</a>
+                     <a href="#">1.2.5 Environmental Management</a>
+                  </div>
+                  <p><b>1.2 Governance & Management</b></p>
+               </div>
+               <div class='triangle'></div>
+            </div>
+            <div class="title-item">
+               <div class="rectangle">
+                  <div class="content">
+                     <a href="#">1.3.1 Study Programs</a>
+                     <a href="#">1.3.2 Research Portfolio</a>
+                     <a href="#">1.3.3 LLL</a>
+                  </div>
+                  <p><b>1.3 Develop Programs</b></p>
+               </div>
+               <div class='triangle'></div>
+            </div>
+            <div class="title-item">
+               <div class="rectangle">
+                  <div class="content">
+                     <a href="#">1.4.1 Internationalisation (Attracting Talents)</a>
+                     <a href="#">1.4.2 Dual Partnership</a>
+                     <a href="#">1.4.3 Strategic Partnership</a>
+                  </div>
+                  <p><b>1.4 Cooperation & Partnership</b></p>
+               </div>
+               <div class='triangle'></div>
+            </div>
+            <div class="title-item">
+               <div class="rectangle">
+                  <div class="content">
+                     <a href="#">1.5.1 Staff Resources</a>
+                  </div>
+                  <p><b>1.5 Staff Resources</b></p>
+               </div>
+               <div class='triangle'></div>
+            </div>
+         </div>
+         <a class="chapter" style="background-color: #293b8f; color: white">2. Core Processes</a>
+         <div class="whatever">
+            <div class="whatever-line">
+               <div class="whatever-title">
+                  <p><b>2.1 Education & Teaching</b></p>
+                  <div class="whatever-decoration">
+                     <div class="whatever-rect"></div>
+                     <div class="whatever-triangle"></div>
+                  </div>
+               </div>
+               <a class="whatever-content">2.1.1 Joint Dual Masters</a>
+               <a class="whatever-content">2.1.2 Plan, Conduct & Evaluate Ind. PhD Programs</a>
+               <a class="whatever-content">2.1.3 Dual Study Partnership Management</a>
+               <a class="whatever-content">2.1.4 Student Mobility</a>
+               <a class="whatever-content">2.1.5 Regular Joint/Double Degrees</a>
+               <a class="whatever-content">2.1.6 Supervise Learning</a>
+            </div>
+            <div class="whatever-line">
+               <div class="whatever-title">
+                  <p><b>2.2 Life Long Learning</b></p>
+                  <div class="whatever-decoration">
+                     <div class="whatever-rect"></div>
+                     <div class="whatever-triangle"></div>
+                  </div>
+               </div>
+               <a class="whatever-content">2.2.1 Management of Standard Courses</a>
+               <a class="whatever-content">2.2.2 Management of Tailored Courses</a>
+            </div>
+            <div class="whatever-line">
+               <div class="whatever-title">
+                  <p><b>2.3 Cooperative <br>Research & Development</b></p>
+                  <div class="whatever-decoration">
+                     <div class="whatever-rect"></div>
+                     <div class="whatever-triangle"></div>
+                  </div>
+               </div>
+               <a class="whatever-content">2.3.1 Plan & Coordinate Research Project Funded by Public Administration</a>
+               <a class="whatever-content">2.3.2 Plan & Coordinate Research Project Financed by Industrial Partners</a>
+               <a class="whatever-content">2.3.3 Valorisation of R&D Results (Patenting, Spin Off, Publication)</a>
+               <a class="whatever-content">2.3.4 Shared Research Infrastructure/Creating an Open Science Infrastructure for DE</a>
+            </div>
+            <div class="whatever-line">
+               <div class="whatever-title">
+                  <p><b>2.4 Dissemination <br>& Transfer of Knowledge</b></p>
+                  <div class="whatever-decoration">
+                     <div class="whatever-rect"></div>
+                     <div class="whatever-triangle"></div>
+                  </div>
+               </div>
+               <a class="whatever-content">2.4.1 Conference & Events</a>
+               <a class="whatever-content">2.4.2 EU4Dual Journal</a>
+               <a class="whatever-content">2.4.3 Research & Innovation Challenge Prizes</a>
+            </div>
+            <div class="whatever-line">
+               <div class="whatever-title">
+                  <p><b>2.5 Entrepreneurship</b></p>
+                  <div class="whatever-decoration">
+                     <div class="whatever-rect"></div>
+                     <div class="whatever-triangle"></div>
+                  </div>
+               </div>
+               <a class="whatever-content">2.5.1 Incubator Network</a>
+               <a class="whatever-content">2.5.2 International Pathway</a>
+               <a class="whatever-content">2.5.3 Local Pathway</a>
+            </div>
+         </div>
+         <a class="chapter" id="hax-2" style="background-color: #c99005; color: white">3. Support Processes</a>
+         <div class="title-row">
+            <div class="title-item">
+               <div class='triangle-a'></div>
+               <div class="rectangle-a">
+                  <p><b>3.1 Communication & Marketing</b></p>
+                  <div class="content">
+                     <a href="#">3.1 Communication & Marketing</a>
+                     <a href="#">3.2 Corporate Communication</a>
+                  </div>
+               </div>
+            </div>
+            <div class="title-item">
+               <div class='triangle-a'></div>
+               <div class="rectangle-a">
+                  <p><b>3.2 Services</b></p>
+                  <div class="content">
+                     <a href="#">3.2.1 Administration (Finance, HR, Controlling)</a>
+                     <a href="#">3.2.2 Staff Mobility (Admin, Researchers, Teachers)</a>
+                     <a href="#">3.2.3 IT Services</a>
+                     <a href="#">3.2.4 Student Support & Activities</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+         :root { font-family: Arial; }
+         #hax { margin-bottom: 65px; }
+         #hax-2 { margin-bottom: 55px; }
+         * { --background-gray: #00000055; --background-yellow: #c99005; }
+         a { all: unset; cursor: pointer; transition: all 0.1s ease-in-out; }
+         a:hover { transform: scale(110%); box-shadow: 0px 0px 10px white; }
+         p { margin: 0; padding: 0; }
+         .container { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+         .page { display: grid; grid-template-columns: 300px 1fr; gap: 3rem; transform-origin: top left; }
+         .chapter { padding: 16px 48px; border-radius: 3rem; background-color: var(--background-gray); margin: auto 0px; text-align: center; width: 200px; }
+         .title-row { display: flex; flex-direction: row; gap: 32px; align-items: flex-end;}
+         .rectangle { width: 450px; background-color: var(--background-gray); display: flex; flex-direction: column; text-align: center; }
+         .rectangle-a { width: 450px; background-color: var(--background-yellow); display: flex; flex-direction: column; text-align: center; color: white; }
+         .content { padding: 16px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 16px; }
+         .content > a { border: 1px solid white; width: 500px; height: 50px; padding: 16px; border-radius: 3rem; max-width: 150px; display: flex; justify-content: center; align-items: center; }       
+         .triangle { width: 0; height: 0; border-top: 30px solid var(--background-gray); border-right: 225px solid transparent; border-bottom: 0px solid transparent; border-left: 225px solid transparent; }
+         .triangle-a { width: 0; height: 0; border-top: 0px solid transparent; border-right: 225px solid transparent; border-bottom: 30px solid var(--background-yellow); border-left: 225px solid transparent; }
+         .whatever { display: flex; flex-direction: column; gap: 16px; }
+         .whatever-line { display: flex; flex-direction: row; gap: 30px; }
+         .whatever-title { display: flex; flex-direction: column; margin: 20px; }
+         .whatever-decoration { display: flex; flex-direction: row; }
+         .whatever-rect { width: 200px; height: 6px; background-color: #293b8f; }
+         .whatever-triangle { width: 0; height: 0; border-top: 0px solid transparent; border-right: 3px solid transparent; border-bottom: 8px solid #293b8f; border-left: 3px solid transparent; transform: rotate(90deg) translateX(-1px); }
+         .whatever-content { background-color: #293b8f; display: flex; align-items: center; justify-content: center; padding: 16px 32px; border-radius: 3rem; width: 200px; height: 50px; color: white; }
+      </style>
+   </head>
+   <body style="overflow: hidden;">
+      <div class="container">
+        <section class="page" id="diagram" style="position: absolute; padding-left: 20px; padding-right: 20px;">
+            <a class="chapter" id="hax">1. Management Process</a>
+            <div class="title-row">
+               <div class="title-item">
+                  <div class="rectangle">
+                     <div class="content">
+                        <a href="#">1.1.1 Strategy, Vision & Mission</a>
+                        <a href="#">1.1.2 Financing & Funding</a>
+                     </div>
+                     <p><b>1.1 Strategic Planning & Controlling</b></p>
+                  </div>
+                  <div class='triangle'></div>
+               </div>
+               <div class="title-item">
+                  <div class="rectangle">
+                     <div class="content">
+                        <a href="#">1.2.1 Quality Management Accreditation</a>
+                        <a href="#">1.2.2 Governance & Policy</a>
+                        <a href="#">1.2.3 Reporting & KPI</a>
+                        <a href="#">1.2.4 Healthy & Safety at Work</a>
+                        <a href="#">1.2.5 Environmental Management</a>
+                     </div>
+                     <p><b>1.2 Governance & Management</b></p>
+                  </div>
+                  <div class='triangle'></div>
+               </div>
+               <div class="title-item">
+                  <div class="rectangle">
+                     <div class="content">
+                        <a href="#">1.3.1 Study Programs</a>
+                        <a href="#">1.3.2 Research Portfolio</a>
+                        <a href="#">1.3.3 LLL</a>
+                     </div>
+                     <p><b>1.3 Develop Programs</b></p>
+                  </div>
+                  <div class='triangle'></div>
+               </div>
+               <div class="title-item">
+                  <div class="rectangle">
+                     <div class="content">
+                        <a href="#">1.4.1 Internationalisation (Attracting Talents)</a>
+                        <a href="#">1.4.2 Dual Partnership</a>
+                        <a href="#">1.4.3 Strategic Partnership</a>
+                     </div>
+                     <p><b>1.4 Cooperation & Partnership</b></p>
+                  </div>
+                  <div class='triangle'></div>
+               </div>
+               <div class="title-item">
+                  <div class="rectangle">
+                     <div class="content">
+                        <a href="#">1.5.1 Staff Resources</a>
+                     </div>
+                     <p><b>1.5 Staff Resources</b></p>
+                  </div>
+                  <div class='triangle'></div>
+               </div>
+            </div>
+            <a class="chapter" style="background-color: #293b8f; color: white">2. Core Processes</a>
+            <div class="whatever">
+               <div class="whatever-line">
+                  <div class="whatever-title">
+                     <p><b>2.1 Education & Teaching</b></p>
+                     <div class="whatever-decoration">
+                        <div class="whatever-rect"></div>
+                        <div class="whatever-triangle"></div>
+                     </div>
+                  </div>
+                  <a class="whatever-content">2.1.1 Joint Dual Masters</a>
+                  <a class="whatever-content">2.1.2 Plan, Conduct & Evaluate Ind. PhD Programs</a>
+                  <a class="whatever-content">2.1.3 Dual Study Partnership Management</a>
+                  <a class="whatever-content">2.1.4 Student Mobility</a>
+                  <a class="whatever-content">2.1.5 Regular Joint/Double Degrees</a>
+                  <a class="whatever-content">2.1.6 Supervise Learning</a>
+               </div>
+               <div class="whatever-line">
+                  <div class="whatever-title">
+                     <p><b>2.2 Life Long Learning</b></p>
+                     <div class="whatever-decoration">
+                        <div class="whatever-rect"></div>
+                        <div class="whatever-triangle"></div>
+                     </div>
+                  </div>
+                  <a class="whatever-content">2.2.1 Management of Standard Courses</a>
+                  <a class="whatever-content">2.2.2 Management of Tailored Courses</a>
+               </div>
+               <div class="whatever-line">
+                  <div class="whatever-title">
+                     <p><b>2.3 Cooperative <br>Research & Development</b></p>
+                     <div class="whatever-decoration">
+                        <div class="whatever-rect"></div>
+                        <div class="whatever-triangle"></div>
+                     </div>
+                  </div>
+                  <a class="whatever-content">2.3.1 Plan & Coordinate Research Project Funded by Public Administration</a>
+                  <a class="whatever-content">2.3.2 Plan & Coordinate Research Project Financed by Industrial Partners</a>
+                  <a class="whatever-content">2.3.3 Valorisation of R&D Results (Patenting, Spin Off, Publication)</a>
+                  <a class="whatever-content">2.3.4 Shared Research Infrastructure/Creating an Open Science Infrastructure for DE</a>
+               </div>
+               <div class="whatever-line">
+                  <div class="whatever-title">
+                     <p><b>2.4 Dissemination <br>& Transfer of Knowledge</b></p>
+                     <div class="whatever-decoration">
+                        <div class="whatever-rect"></div>
+                        <div class="whatever-triangle"></div>
+                     </div>
+                  </div>
+                  <a class="whatever-content">2.4.1 Conference & Events</a>
+                  <a class="whatever-content">2.4.2 EU4Dual Journal</a>
+                  <a class="whatever-content">2.4.3 Research & Innovation Challenge Prizes</a>
+               </div>
+               <div class="whatever-line">
+                  <div class="whatever-title">
+                     <p><b>2.5 Entrepreneurship</b></p>
+                     <div class="whatever-decoration">
+                        <div class="whatever-rect"></div>
+                        <div class="whatever-triangle"></div>
+                     </div>
+                  </div>
+                  <a class="whatever-content">2.5.1 Incubator Network</a>
+                  <a class="whatever-content">2.5.2 International Pathway</a>
+                  <a class="whatever-content">2.5.3 Local Pathway</a>
+               </div>
+            </div>
+            <a class="chapter" id="hax-2" style="background-color: #c99005; color: white">3. Support Processes</a>
+            <div class="title-row">
+               <div class="title-item">
+                  <div class='triangle-a'></div>
+                  <div class="rectangle-a">
+                     <p><b>3.1 Communication & Marketing</b></p>
+                     <div class="content">
+                        <a href="#">3.1 Communication & Marketing</a>
+                        <a href="#">3.2 Corporate Communication</a>
+                     </div>
+                  </div>
+               </div>
+               <div class="title-item">
+                  <div class='triangle-a'></div>
+                  <div class="rectangle-a">
+                     <p><b>3.2 Services</b></p>
+                     <div class="content">
+                        <a href="#">3.2.1 Administration (Finance, HR, Controlling)</a>
+                        <a href="#">3.2.2 Staff Mobility (Admin, Researchers, Teachers)</a>
+                        <a href="#">3.2.3 IT Services</a>
+                        <a href="#">3.2.4 Student Support & Activities</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </div>
+      <script>
+        function resizeDiagram() {
+            const diagram = document.getElementById('diagram');
+            const container = document.querySelector('.container');
+            
+            const scaleX = container.clientWidth / diagram.scrollWidth;
+            const scaleY = container.clientHeight / diagram.scrollHeight;
+            const scale = Math.min(scaleX, scaleY);
+            
+            diagram.style.transform = `scale(${scale})`;
+            diagram.style.left = `${(container.clientWidth - diagram.scrollWidth * scale) / 2}px`;
+            diagram.style.top = `${(container.clientHeight - diagram.scrollHeight * scale) / 2}px`;
+        }
+
+        window.addEventListener('resize', resizeDiagram);
+        window.addEventListener('load', resizeDiagram);
+      </script>
+   </body>
+</html>
