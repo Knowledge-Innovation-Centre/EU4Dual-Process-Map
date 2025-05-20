@@ -63,6 +63,12 @@
         justify-content: center;
         font-size: 12px;
         font-weight: bold;
+        /* Only display badges on elements with data-count attribute */
+        display: none;
+      }
+      /* Show badge only when data-count is set */
+      .documents-badge[data-count]::after {
+        display: flex;
       }
    </style>
 </head>
@@ -75,7 +81,7 @@
                     <div class="rectangle">
                         <div class="content">
                             <a data-key="1.1.1" class="documents-badge">1.1.1 Strategy, Vision & Mission</a>
-                            <a href="#">1.1.2 Financing & Funding</a>
+                            <a data-key="1.1.2" class="documents-badge">1.1.2 Financing & Funding</a>
                         </div>
                         <p><b>1.1 Strategic Planning & Controlling</b></p>
                     </div>
@@ -84,11 +90,11 @@
                 <div class="title-item">
                     <div class="rectangle">
                         <div class="content">
-                            <a href="#">1.2.1 Quality Management Accreditation</a>
+                            <a data-key="1.2.1" class="documents-badge">1.2.1 Quality Management Accreditation</a>
                             <a data-key="1.2.2" class="documents-badge">1.2.2 Governance & Policy</a>
-                            <a href="#">1.2.3 Reporting & KPI</a>
-                            <a href="#">1.2.4 Healthy & Safety at Work</a>
-                            <a href="#">1.2.5 Environmental Management</a>
+                            <a data-key="1.2.3" class="documents-badge">1.2.3 Reporting & KPI</a>
+                            <a data-key="1.2.4" class="documents-badge">1.2.4 Healthy & Safety at Work</a>
+                            <a data-key="1.2.5" class="documents-badge">1.2.5 Environmental Management</a>
                         </div>
                         <p><b>1.2 Governance & Management</b></p>
                     </div>
@@ -97,9 +103,9 @@
                 <div class="title-item">
                     <div class="rectangle">
                         <div class="content">
-                            <a href="#">1.3.1 Study Programs</a>
-                            <a href="#">1.3.2 Research Portfolio</a>
-                            <a href="#">1.3.3 LLL</a>
+                            <a data-key="1.3.1" class="documents-badge">1.3.1 Study Programs</a>
+                            <a data-key="1.3.2" class="documents-badge">1.3.2 Research Portfolio</a>
+                            <a data-key="1.3.3" class="documents-badge">1.3.3 LLL</a>
                         </div>
                         <p><b>1.3 Develop Programs</b></p>
                     </div>
@@ -108,9 +114,9 @@
                 <div class="title-item">
                     <div class="rectangle">
                         <div class="content">
-                            <a href="#">1.4.1 Internationalisation (Attracting Talents)</a>
-                            <a href="#">1.4.2 Dual Partnership</a>
-                            <a href="#">1.4.3 Strategic Partnership</a>
+                            <a data-key="1.4.1" class="documents-badge">1.4.1 Internationalisation (Attracting Talents)</a>
+                            <a data-key="1.4.2" class="documents-badge">1.4.2 Dual Partnership</a>
+                            <a data-key="1.4.3" class="documents-badge">1.4.3 Strategic Partnership</a>
                         </div>
                         <p><b>1.4 Cooperation & Partnership</b></p>
                     </div>
@@ -119,7 +125,7 @@
                 <div class="title-item">
                     <div class="rectangle">
                         <div class="content">
-                            <a href="#">1.5.1 Staff Resources</a>
+                            <a data-key="1.5.1" class="documents-badge">1.5.1 Staff Resources</a>
                         </div>
                         <p><b>1.5 Staff Resources</b></p>
                     </div>
@@ -137,11 +143,11 @@
                         </div>
                     </div>
                     <a data-key="2.1.1" class="whatever-content documents-badge">2.1.1 Joint Dual Masters</a>
-                    <a class="whatever-content">2.1.2 Plan, Conduct & Evaluate Ind. PhD Programs</a>
-                    <a class="whatever-content">2.1.3 Dual Study Partnership Management</a>
-                    <a class="whatever-content">2.1.4 Student Mobility</a>
-                    <a class="whatever-content">2.1.5 Regular Joint/Double Degrees</a>
-                    <a class="whatever-content">2.1.6 Supervise Learning</a>
+                    <a data-key="2.1.2" class="whatever-content documents-badge">2.1.2 Plan, Conduct & Evaluate Ind. PhD Programs</a>
+                    <a data-key="2.1.3" class="whatever-content documents-badge">2.1.3 Dual Study Partnership Management</a>
+                    <a data-key="2.1.4" class="whatever-content documents-badge">2.1.4 Student Mobility</a>
+                    <a data-key="2.1.5" class="whatever-content documents-badge">2.1.5 Regular Joint/Double Degrees</a>
+                    <a data-key="2.1.6" class="whatever-content documents-badge">2.1.6 Supervise Learning</a>
                 </div>
                 <div class="whatever-line">
                     <div class="whatever-title">
@@ -152,7 +158,7 @@
                         </div>
                     </div>
                     <a data-key="2.2.1" class="whatever-content documents-badge">2.2.1 Management of Standard Courses</a>
-                    <a class="whatever-content">2.2.2 Management of Tailored Courses</a>
+                    <a data-key="2.2.2" class="whatever-content documents-badge">2.2.2 Management of Tailored Courses</a>
                 </div>
                 <div class="whatever-line">
                     <div class="whatever-title">
@@ -162,10 +168,10 @@
                             <div class="whatever-triangle"></div>
                         </div>
                     </div>
-                    <a class="whatever-content">2.3.1 Plan & Coordinate Research Project Funded by Public Administration</a>
-                    <a class="whatever-content">2.3.2 Plan & Coordinate Research Project Financed by Industrial Partners</a>
-                    <a class="whatever-content">2.3.3 Valorisation of R&D Results (Patenting, Spin Off, Publication)</a>
-                    <a class="whatever-content">2.3.4 Shared Research Infrastructure/Creating an Open Science Infrastructure for DE</a>
+                    <a data-key="2.3.1" class="whatever-content documents-badge">2.3.1 Plan & Coordinate Research Project Funded by Public Administration</a>
+                    <a data-key="2.3.2" class="whatever-content documents-badge">2.3.2 Plan & Coordinate Research Project Financed by Industrial Partners</a>
+                    <a data-key="2.3.3" class="whatever-content documents-badge">2.3.3 Valorisation of R&D Results (Patenting, Spin Off, Publication)</a>
+                    <a data-key="2.3.4" class="whatever-content documents-badge">2.3.4 Shared Research Infrastructure/Creating an Open Science Infrastructure for DE</a>
                 </div>
                 <div class="whatever-line">
                     <div class="whatever-title">
@@ -175,9 +181,9 @@
                             <div class="whatever-triangle"></div>
                         </div>
                     </div>
-                    <a class="whatever-content">2.4.1 Conference & Events</a>
-                    <a class="whatever-content">2.4.2 EU4Dual Journal</a>
-                    <a class="whatever-content">2.4.3 Research & Innovation Challenge Prizes</a>
+                    <a data-key="2.4.1" class="whatever-content documents-badge">2.4.1 Conference & Events</a>
+                    <a data-key="2.4.2" class="whatever-content documents-badge">2.4.2 EU4Dual Journal</a>
+                    <a data-key="2.4.3" class="whatever-content documents-badge">2.4.3 Research & Innovation Challenge Prizes</a>
                 </div>
                 <div class="whatever-line">
                     <div class="whatever-title">
@@ -187,9 +193,9 @@
                             <div class="whatever-triangle"></div>
                         </div>
                     </div>
-                    <a class="whatever-content">2.5.1 Incubator Network</a>
-                    <a class="whatever-content">2.5.2 International Pathway</a>
-                    <a class="whatever-content">2.5.3 Local Pathway</a>
+                    <a data-key="2.5.1" class="whatever-content documents-badge">2.5.1 Incubator Network</a>
+                    <a data-key="2.5.2" class="whatever-content documents-badge">2.5.2 International Pathway</a>
+                    <a data-key="2.5.3" class="whatever-content documents-badge">2.5.3 Local Pathway</a>
                 </div>
             </div>
             <a class="chapter" id="hax-2" style="background-color: #c99005; color: white">3. Support Processes</a>
@@ -199,8 +205,8 @@
                     <div class="rectangle-a">
                         <p><b>3.1 Communication & Marketing</b></p>
                         <div class="content">
-                            <a href="#">3.1 Communication & Marketing</a>
-                            <a href="#">3.2 Corporate Communication</a>
+                            <a data-key="3.1.1" class="documents-badge">3.1.1 Communication & Marketing</a>
+                            <a data-key="3.1.2" class="documents-badge">3.1.2 Corporate Communication</a>
                         </div>
                     </div>
                 </div>
@@ -209,10 +215,10 @@
                     <div class="rectangle-a">
                         <p><b>3.2 Services</b></p>
                         <div class="content">
-                            <a href="#">3.2.1 Administration (Finance, HR, Controlling)</a>
-                            <a href="#">3.2.2 Staff Mobility (Admin, Researchers, Teachers)</a>
-                            <a href="#">3.2.3 IT Services</a>
-                            <a href="#">3.2.4 Student Support & Activities</a>
+                            <a data-key="3.2.1" class="documents-badge">3.2.1 Administration (Finance, HR, Controlling)</a>
+                            <a data-key="3.2.2" class="documents-badge">3.2.2 Staff Mobility (Admin, Researchers, Teachers)</a>
+                            <a data-key="3.2.3" class="documents-badge">3.2.3 IT Services</a>
+                            <a data-key="3.2.4" class="documents-badge">3.2.4 Student Support & Activities</a>
                         </div>
                     </div>
                 </div>
@@ -247,6 +253,7 @@
                 updateDocumentCounts();
             } catch (error) {
                 console.error('Error loading document config:', error);
+                // If unable to load config, show error in console but don't break the page
             }
         }
 
@@ -269,7 +276,11 @@
                 const count = sectionCounts[sectionKey] || 0;
                 
                 if (count > 0) {
+                    // Only set data-count for sections with documents
                     element.setAttribute('data-count', count);
+                } else {
+                    // Remove data-count attribute for sections without documents
+                    element.removeAttribute('data-count');
                 }
             });
         }
@@ -286,10 +297,10 @@
             diagram.style.transform = `scale(${scale})`;
             diagram.style.left = `${(container.clientWidth - diagram.scrollWidth * scale) / 2}px`;
             diagram.style.top = `${(container.clientHeight - diagram.scrollHeight * scale) / 2}px`;
-         }
+        }
 
-         // Open Modal Function
-         function openModal(buttonText, sectionKey) {
+        // Open Modal Function
+        function openModal(buttonText, sectionKey) {
             const modal = document.getElementById('linkModal');
             const modalTitle = document.getElementById('modalTitle');
             const modalLinks = document.getElementById('modalLinks');
@@ -305,59 +316,59 @@
 
             // Add links if they exist
             if (sectionDocuments && sectionDocuments.length > 0) {
-               sectionDocuments.forEach((doc, index) => {
-                     const linkElement = document.createElement('div');
-                     linkElement.classList.add('modal-link');
-                     linkElement.innerHTML = `
+                sectionDocuments.forEach((doc, index) => {
+                    const linkElement = document.createElement('div');
+                    linkElement.classList.add('modal-link');
+                    linkElement.innerHTML = `
                         <span>${doc.fileName}</span>
                         <a href="${doc.fileLink}" target="_blank">Open Document</a>
-                     `;
-                     modalLinks.appendChild(linkElement);
-               });
+                    `;
+                    modalLinks.appendChild(linkElement);
+                });
             } else {
-               const noLinksElement = document.createElement('p');
-               noLinksElement.textContent = 'No documents available for this item.';
-               modalLinks.appendChild(noLinksElement);
+                const noLinksElement = document.createElement('p');
+                noLinksElement.textContent = 'No documents available for this item.';
+                modalLinks.appendChild(noLinksElement);
             }
 
             // Show modal
             modal.style.display = 'flex';
-         }
+        }
 
-         // Close Modal Function
-         function closeModal() {
+        // Close Modal Function
+        function closeModal() {
             const modal = document.getElementById('linkModal');
             modal.style.display = 'none';
-         }
+        }
 
-         // Event Listeners and Initialization
-         document.addEventListener('DOMContentLoaded', () => {
+        // Event Listeners and Initialization
+        document.addEventListener('DOMContentLoaded', () => {
             // Load document configuration
             loadDocumentConfig();
 
             // Use event delegation to handle clicks on links with data-key attribute
             document.querySelector('.container').addEventListener('click', (e) => {
-               if (e.target.tagName === 'A' && e.target.hasAttribute('data-key')) {
-                     e.preventDefault();
-                     const sectionKey = e.target.getAttribute('data-key');
-                     openModal(e.target.textContent, sectionKey);
-               }
+                if (e.target.tagName === 'A' && e.target.hasAttribute('data-key')) {
+                    e.preventDefault();
+                    const sectionKey = e.target.getAttribute('data-key');
+                    openModal(e.target.textContent, sectionKey);
+                }
             });
 
             // Close modal when clicking outside of it
             const modal = document.getElementById('linkModal');
             modal.addEventListener('click', (e) => {
-               if (e.target === modal) {
-                     closeModal();
-               }
+                if (e.target === modal) {
+                    closeModal();
+                }
             });
 
             // Initial diagram resize
             resizeDiagram();
-         });
+        });
 
-         // Resize event listener
-         window.addEventListener('resize', resizeDiagram);
+        // Resize event listener
+        window.addEventListener('resize', resizeDiagram);
     </script>
 </body>
 </html>
