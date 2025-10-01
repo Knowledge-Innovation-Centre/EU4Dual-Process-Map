@@ -242,7 +242,7 @@
         // Load the document configuration from a JSON file
         async function loadDocumentConfig() {
             try {
-                const response = await fetch('documents-config.json');
+                const response = await fetch('https://eu4dual-process-documents.s3.eu-central-1.amazonaws.com/config/documents-config.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
