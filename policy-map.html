@@ -29,7 +29,6 @@
             max-height: 900px;
         }
 
-        /* Outer circle border */
         .outer-circle {
             position: absolute;
             width: 100%;
@@ -78,7 +77,6 @@
             overflow: hidden;
         }
 
-        /* Center circle */
         .center-circle {
             position: absolute;
             width: 16%;
@@ -106,7 +104,6 @@
             box-shadow: 0 12px 40px rgba(0,0,0,0.4);
         }
 
-        /* Main circles */
         .main-circle {
             position: absolute;
             width: 20%;
@@ -151,7 +148,6 @@
 					transform: translateX(-50%);
         }
 
-        /* Small circles */
         .small-circle {
             position: absolute;
             width: 14%;
@@ -179,24 +175,20 @@
             border-width: 5px;
         }
 
-        /* Direction satellites (light blue section - top) */
         .dir-1 { top: 15%; left: 16%; border: 3px solid #4facfe; }
         .dir-2 { top: 6%; left: 28%; border: 3px solid #4facfe; }
         .dir-3 { top: 4%; left: 43%; border: 3px solid #4facfe; }
         .dir-4 { top: 6%; right: 28%; border: 3px solid #4facfe; }
         .dir-5 { top: 15%; right: 16%; border: 3px solid #4facfe; }
 
-        /* Results satellites (green section - left) */
         .res-1 { bottom: 35%; left: 8%; border: 3px solid #43e97b; }
         .res-2 { bottom: 20%; left: 12%; border: 3px solid #43e97b; }
         .res-3 { bottom: 10%; left: 25%; border: 3px solid #43e97b; }
 
-        /* Execution satellites (dark blue section - right) */
         .exe-1 { bottom: 35%; right: 8%; border: 3px solid #5a6d9d; }
         .exe-2 { bottom: 20%; right: 12%; border: 3px solid #5a6d9d; }
         .exe-3 { bottom: 10%; right: 25%; border: 3px solid #5a6d9d; }
 
-        /* Modal styles */
         .modal {
             display: none;
             position: fixed;
@@ -299,59 +291,47 @@
     <div class="main-container">
         <div class="outer-circle">
             <div class="inner-background">
-                <!-- Center circle -->
                 <div class="center-circle">EU4DUAL</div>
 
-                <!-- Main circles -->
-                <div class="main-circle direction">DIRECTION</div>
-                <div class="main-circle results">RESULTS</div>
-                <div class="main-circle execution">EXECUTION</div>
+                <div class="main-circle direction" data-key="direction">DIRECTION</div>
+                <div class="main-circle results" data-key="results">RESULTS</div>
+                <div class="main-circle execution" data-key="execution">EXECUTION</div>
 
-                <!-- Direction satellites -->
-                <div class="small-circle dir-1">Purpose</div>
-                <div class="small-circle dir-2">Vision</div>
-                <div class="small-circle dir-3">Culture</div>
-                <div class="small-circle dir-4">Mission</div>
-                <div class="small-circle dir-5">Policies</div>
+                <div class="small-circle dir-1" data-key="purpose">Purpose</div>
+                <div class="small-circle dir-2" data-key="vision">Vision</div>
+                <div class="small-circle dir-3" data-key="culture">Culture</div>
+                <div class="small-circle dir-4" data-key="mission">Mission</div>
+                <div class="small-circle dir-5" data-key="policies">Policies</div>
 
-                <!-- Results satellites -->
-                <div class="small-circle res-1">Deliverables</div>
-                <div class="small-circle res-2">Milestones</div>
-                <div class="small-circle res-3">Products</div>
+                <div class="small-circle res-1" data-key="deliverables">Deliverables</div>
+                <div class="small-circle res-2" data-key="milestones">Milestones</div>
+                <div class="small-circle res-3" data-key="products">Products</div>
 
-                <!-- Execution satellites -->
-                <div class="small-circle exe-1">Risk Management</div>
-                <div class="small-circle exe-2">Process Landscapes</div>
-                <div class="small-circle exe-3">KPI</div>
+                <div class="small-circle exe-1" data-key="risk">Risk Management</div>
+                <div class="small-circle exe-2" data-key="landscapes">Process Landscapes</div>
+                <div class="small-circle exe-3" data-key="kpi">KPI</div>
             </div>
         </div>
 
-        <!-- SVG for all curved text -->
         <svg viewBox="0 0 900 900" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 15;">
             <defs>
-                <!-- Left curve path (7-6 o'clock area) -->
                 <path id="leftPath" d="M 20,475 A 410,410 0 0,0 500,870" fill="none"/>
-                <!-- Top curve path (10-2 o'clock area) -->
                 <path id="topPath" d="M 175,130 A 410,410 0 0,1 760,170" fill="none"/>
-                <!-- Right curve path (2-5 o'clock area) -->
                 <path id="rightPath" d="M 590,860 A 425,415 0 0,0 710,130" fill="none"/>
             </defs>
 
-            <!-- Left curved text -->
             <text fill="white" font-size="16" font-weight="bold" letter-spacing="3" style="text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
                 <textPath href="#leftPath" startOffset="0%">
                     RELEVANCE & USABILITY | PERFORMANCE
                 </textPath>
             </text>
 
-            <!-- Top curved text -->
             <text fill="white" font-size="16" font-weight="bold" letter-spacing="3" style="text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
                 <textPath href="#topPath" startOffset="0%">
                     APPROACH | DEPLOYMENT | ASSESSMENT & REFINEMENT
                 </textPath>
             </text>
 
-            <!-- Right curved text -->
             <text fill="white" font-size="16" font-weight="bold" letter-spacing="3" style="text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
                 <textPath href="#rightPath" startOffset="0%">
                     APPROACH | DEPLOYMENT | ASSESSMENT & REFINEMENT
@@ -359,28 +339,23 @@
             </text>
         </svg>
 
-        <!-- Connection lines SVG -->
         <svg viewBox="0 0 900 900" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 4;">
-            <!-- Direction (center: 450, 225) to its satellites (light blue) -->
             <line x1="370" y1="325" x2="270" y2="265" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
             <line x1="390" y1="275" x2="350" y2="205" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
             <line x1="450" y1="265" x2="450" y2="190" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
             <line x1="506" y1="275" x2="550" y2="205" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
             <line x1="530" y1="325" x2="630" y2="265" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
 
-            <!-- Results (center: 342, 630) to its satellites (green) -->
             <line x1="280" y1="530" x2="225" y2="520" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
             <line x1="290" y1="580" x2="245" y2="605" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
             <line x1="342" y1="610" x2="320" y2="665" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
 
-            <!-- Execution (center: 558, 630) to its satellites (dark blue) -->
             <line x1="625" y1="530" x2="675" y2="520" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
             <line x1="605" y1="580" x2="655" y2="605" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
             <line x1="560" y1="607" x2="580" y2="663" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
         </svg>
     </div>
 
-    <!-- Modal -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -391,7 +366,6 @@
     </div>
 
     <script>
-        // Modal data for each circle
         const modalData = {
             'direction': {
                 title: 'DIRECTION',
@@ -465,11 +439,9 @@
             }
         };
 
-        // Add click listeners to all circles except center
         document.querySelectorAll('.main-circle, .small-circle').forEach(circle => {
             circle.addEventListener('click', function() {
-                const classList = Array.from(this.classList);
-                const key = classList.find(c => c !== 'main-circle' && c !== 'small-circle');
+                const key = this.getAttribute('data-key');
 
                 if (key && modalData[key]) {
                     openModal(key);
@@ -489,14 +461,12 @@
             document.getElementById('modal').classList.remove('active');
         }
 
-        // Close modal when clicking outside
         document.getElementById('modal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
         });
 
-        // Close modal with ESC key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeModal();
