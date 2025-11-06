@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EU4DUAL Organizational Diagram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .main-container {
+            position: relative;
+            width: 90vmin;
+            height: 90vmin;
+            max-width: 900px;
+            max-height: 900px;
+        }
+
+        /* Outer circle border */
+        .outer-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                #4facfe 0deg,
+                #4facfe 40deg,
+                white 60deg,
+                white 60deg,
+                #5a6d9d 80deg,
+                #5a6d9d 160deg,
+                white 180deg,
+                white 180deg,
+                #43e97b 200deg,
+                #43e97b 280deg,
+                white 300deg,
+                white 300deg,
+                #4facfe 320deg,
+                #4facfe 360deg
+            );
+            padding: 40px;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .inner-background {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                #e8f5ff 0deg,
+                #e8f5ff 40deg,
+                white 60deg,
+                #e3eaf5 80deg,
+                #e3eaf5 160deg,
+                white 180deg,
+                #e7fdf0 200deg,
+                #e7fdf0 280deg,
+                white 300deg,
+                #e8f5ff 320deg,
+                #e8f5ff 360deg
+            );
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Center circle */
+        .center-circle {
+            position: absolute;
+            width: 16%;
+            height: 16%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.6vmin;
+            letter-spacing: 0.5px;
+            z-index: 10;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .center-circle:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Main circles */
+        .main-circle {
+            position: absolute;
+            width: 20%;
+            height: 20%;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.8vmin;
+            text-align: center;
+            z-index: 5;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .main-circle:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+        }
+
+        .direction {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .results {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            bottom: 30%;
+            left: 38%;
+						transform: translateX(-50%);
+        }
+
+        .execution {
+            background: linear-gradient(135deg, #5a6d9d 0%, #3d4d8d 100%);
+            bottom: 30%;
+            right: 18%;
+					transform: translateX(-50%);
+        }
+
+        /* Small circles */
+        .small-circle {
+            position: absolute;
+            width: 14%;
+            height: 14%;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            font-size: 1.5vmin;
+            font-weight: 700;
+            text-align: center;
+            padding: 5px;
+            z-index: 8;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            line-height: 1.2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .small-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            border-width: 5px;
+        }
+
+        /* Direction satellites (light blue section - top) */
+        .dir-1 { top: 15%; left: 16%; border: 3px solid #4facfe; }
+        .dir-2 { top: 6%; left: 28%; border: 3px solid #4facfe; }
+        .dir-3 { top: 4%; left: 43%; border: 3px solid #4facfe; }
+        .dir-4 { top: 6%; right: 28%; border: 3px solid #4facfe; }
+        .dir-5 { top: 15%; right: 16%; border: 3px solid #4facfe; }
+
+        /* Results satellites (green section - left) */
+        .res-1 { bottom: 35%; left: 8%; border: 3px solid #43e97b; }
+        .res-2 { bottom: 20%; left: 12%; border: 3px solid #43e97b; }
+        .res-3 { bottom: 10%; left: 25%; border: 3px solid #43e97b; }
+
+        /* Execution satellites (dark blue section - right) */
+        .exe-1 { bottom: 35%; right: 8%; border: 3px solid #5a6d9d; }
+        .exe-2 { bottom: 20%; right: 12%; border: 3px solid #5a6d9d; }
+        .exe-3 { bottom: 10%; right: 25%; border: 3px solid #5a6d9d; }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-header {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .modal-body {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .modal-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="outer-circle">
+            <div class="inner-background">
+                <!-- Center circle -->
+                <div class="center-circle">EU4DUAL</div>
+
+                <!-- Main circles -->
+                <div class="main-circle direction">DIRECTION</div>
+                <div class="main-circle results">RESULTS</div>
+                <div class="main-circle execution">EXECUTION</div>
+
+                <!-- Direction satellites -->
+                <div class="small-circle dir-1">Purpose</div>
+                <div class="small-circle dir-2">Vision</div>
+                <div class="small-circle dir-3">Culture</div>
+                <div class="small-circle dir-4">Mission</div>
+                <div class="small-circle dir-5">Policies</div>
+
+                <!-- Results satellites -->
+                <div class="small-circle res-1">Deliverables</div>
+                <div class="small-circle res-2">Milestones</div>
+                <div class="small-circle res-3">Products</div>
+
+                <!-- Execution satellites -->
+                <div class="small-circle exe-1">Risk Management</div>
+                <div class="small-circle exe-2">Process Landscapes</div>
+                <div class="small-circle exe-3">KPI</div>
+            </div>
+        </div>
+
+        <!-- SVG for all curved text -->
+        <svg viewBox="0 0 900 900" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 15;">
+            <defs>
+                <!-- Left curve path (7-6 o'clock area) -->
+                <path id="leftPath" d="M 20,475 A 410,410 0 0,0 500,870" fill="none"/>
+                <!-- Top curve path (10-2 o'clock area) -->
+                <path id="topPath" d="M 175,130 A 410,410 0 0,1 760,170" fill="none"/>
+                <!-- Right curve path (2-5 o'clock area) -->
+                <path id="rightPath" d="M 590,860 A 425,415 0 0,0 710,130" fill="none"/>
+            </defs>
+
+            <!-- Left curved text -->
+            <text fill="white" font-size="16" font-weight="bold" letter-spacing="3" style="text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
+                <textPath href="#leftPath" startOffset="0%">
+                    RELEVANCE & USABILITY | PERFORMANCE
+                </textPath>
+            </text>
+
+            <!-- Top curved text -->
+            <text fill="white" font-size="16" font-weight="bold" letter-spacing="3" style="text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
+                <textPath href="#topPath" startOffset="0%">
+                    APPROACH | DEPLOYMENT | ASSESSMENT & REFINEMENT
+                </textPath>
+            </text>
+
+            <!-- Right curved text -->
+            <text fill="white" font-size="16" font-weight="bold" letter-spacing="3" style="text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
+                <textPath href="#rightPath" startOffset="0%">
+                    APPROACH | DEPLOYMENT | ASSESSMENT & REFINEMENT
+                </textPath>
+            </text>
+        </svg>
+
+        <!-- Connection lines SVG -->
+        <svg viewBox="0 0 900 900" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 4;">
+            <!-- Direction (center: 450, 225) to its satellites (light blue) -->
+            <line x1="370" y1="325" x2="270" y2="265" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
+            <line x1="390" y1="275" x2="350" y2="205" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
+            <line x1="450" y1="265" x2="450" y2="190" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
+            <line x1="506" y1="275" x2="550" y2="205" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
+            <line x1="530" y1="325" x2="630" y2="265" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
+
+            <!-- Results (center: 342, 630) to its satellites (green) -->
+            <line x1="280" y1="530" x2="225" y2="520" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
+            <line x1="290" y1="580" x2="245" y2="605" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
+            <line x1="342" y1="610" x2="320" y2="665" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
+
+            <!-- Execution (center: 558, 630) to its satellites (dark blue) -->
+            <line x1="625" y1="530" x2="675" y2="520" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
+            <line x1="605" y1="580" x2="655" y2="605" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
+            <line x1="560" y1="607" x2="580" y2="663" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
+        </svg>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-header" id="modal-title"></div>
+            <div class="modal-body" id="modal-body"></div>
+            <a href="#" class="modal-link" id="modal-link" target="_blank">Learn More</a>
+        </div>
+    </div>
+
+    <script>
+        // Modal data for each circle
+        const modalData = {
+            'direction': {
+                title: 'DIRECTION',
+                body: 'Strategic direction and organizational guidance.',
+                link: '#'
+            },
+            'results': {
+                title: 'RESULTS',
+                body: 'Outcomes, deliverables, and project achievements.',
+                link: '#'
+            },
+            'execution': {
+                title: 'EXECUTION',
+                body: 'Implementation, processes, and performance metrics.',
+                link: '#'
+            },
+            'dir-1': {
+                title: 'Purpose',
+                body: 'The fundamental reason for the organization\'s existence.',
+                link: '#'
+            },
+            'dir-2': {
+                title: 'Vision',
+                body: 'The aspirational future state of the organization.',
+                link: '#'
+            },
+            'dir-3': {
+                title: 'Culture',
+                body: 'The values, beliefs, and behaviors that shape our organization.',
+                link: '#'
+            },
+            'dir-4': {
+                title: 'Mission',
+                body: 'The core objectives and how we achieve our purpose.',
+                link: '#'
+            },
+            'dir-5': {
+                title: 'Policies',
+                body: 'The guidelines and rules that govern our operations.',
+                link: '#'
+            },
+            'res-1': {
+                title: 'Deliverables',
+                body: 'Tangible outputs and products created by the organization.',
+                link: '#'
+            },
+            'res-2': {
+                title: 'Milestones',
+                body: 'Key achievements and progress markers in project timelines.',
+                link: '#'
+            },
+            'res-3': {
+                title: 'Products',
+                body: 'Final products and services delivered to stakeholders.',
+                link: '#'
+            },
+            'exe-1': {
+                title: 'Risk Management',
+                body: 'Identifying, assessing, and mitigating organizational risks.',
+                link: '#'
+            },
+            'exe-2': {
+                title: 'Process Landscapes',
+                body: 'The comprehensive view of all organizational processes.',
+                link: '#'
+            },
+            'exe-3': {
+                title: 'KPI',
+                body: 'Key Performance Indicators that measure organizational success.',
+                link: '#'
+            }
+        };
+
+        // Add click listeners to all circles except center
+        document.querySelectorAll('.main-circle, .small-circle').forEach(circle => {
+            circle.addEventListener('click', function() {
+                const classList = Array.from(this.classList);
+                const key = classList.find(c => c !== 'main-circle' && c !== 'small-circle');
+
+                if (key && modalData[key]) {
+                    openModal(key);
+                }
+            });
+        });
+
+        function openModal(key) {
+            const data = modalData[key];
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-body').textContent = data.body;
+            document.getElementById('modal-link').href = data.link;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
