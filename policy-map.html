@@ -245,11 +245,44 @@
             font-weight: 700;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 10px;
         }
 
         .modal-link:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .document-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .document-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .document-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .document-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .modal-close {
@@ -293,23 +326,23 @@
             <div class="inner-background">
                 <div class="center-circle">EU4DUAL</div>
 
-                <div class="main-circle direction" data-key="direction">DIRECTION</div>
-                <div class="main-circle results" data-key="results">RESULTS</div>
-                <div class="main-circle execution" data-key="execution">EXECUTION</div>
+                <div class="main-circle direction" data-section-key="1">DIRECTION</div>
+                <div class="main-circle results" data-section-key="2">RESULTS</div>
+                <div class="main-circle execution" data-section-key="3">EXECUTION</div>
 
-                <div class="small-circle dir-1" data-key="purpose">Purpose</div>
-                <div class="small-circle dir-2" data-key="vision">Vision</div>
-                <div class="small-circle dir-3" data-key="culture">Culture</div>
-                <div class="small-circle dir-4" data-key="mission">Mission</div>
-                <div class="small-circle dir-5" data-key="policies">Policies</div>
+                <div class="small-circle dir-1" data-section-key="1.1">Purpose</div>
+                <div class="small-circle dir-2" data-section-key="1.1.1" data-link="https://fileshare.knowledgeinnovation.eu/external/b587c12c68248e792af0cd99806b8de2a6d958f7f4430152c05e2ea12c6bc5f3">Vision</div>
+                <div class="small-circle dir-3" data-section-key="1.1.2">Culture</div>
+                <div class="small-circle dir-4" data-section-key="1.1.1" data-link="https://fileshare.knowledgeinnovation.eu/external/b587c12c68248e792af0cd99806b8de2a6d958f7f4430152c05e2ea12c6bc5f3">Mission</div>
+                <div class="small-circle dir-5" data-section-key="1.2.2" data-link="https://fileshare.knowledgeinnovation.eu/external/79b664406eec4852940c230674054d72a5fc0a90f129f6d5c8d219beee3c69de">Policies</div>
 
-                <div class="small-circle res-1" data-key="deliverables">Deliverables</div>
-                <div class="small-circle res-2" data-key="milestones">Milestones</div>
-                <div class="small-circle res-3" data-key="products">Products</div>
+                <div class="small-circle res-1" data-section-key="2.1">Deliverables</div>
+                <div class="small-circle res-2" data-section-key="2.1.1" data-link="https://fileshare.knowledgeinnovation.eu/external/e97f978605a9378744b12cbf399be72f5417968731012fa6cbaba03312016c80">Milestones</div>
+                <div class="small-circle res-3" data-section-key="2.2.1" data-link="https://fileshare.knowledgeinnovation.eu/external/06f22ed6d09f690c40f06ab558d63f2e69f3c1742e40fa6645feda421753c903">Products</div>
 
-                <div class="small-circle exe-1" data-key="risk">Risk Management</div>
-                <div class="small-circle exe-2" data-key="landscapes">Process Landscapes</div>
-                <div class="small-circle exe-3" data-key="kpi">KPI</div>
+                <div class="small-circle exe-1" data-section-key="3.1">Risk Management</div>
+                <div class="small-circle exe-2" data-section-key="3.2">Process Landscapes</div>
+                <div class="small-circle exe-3" data-section-key="3.3">KPI</div>
             </div>
         </div>
 
@@ -361,99 +394,107 @@
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <div class="modal-header" id="modal-title"></div>
             <div class="modal-body" id="modal-body"></div>
-            <a href="#" class="modal-link" id="modal-link" target="_blank">Learn More</a>
+            <div id="modal-documents"></div>
         </div>
     </div>
 
     <script>
         const modalData = {
-            'direction': {
+            '1': {
                 title: 'DIRECTION',
-                body: 'Strategic direction and organizational guidance.',
-                link: '#'
+                body: 'Strategic direction and organizational guidance.'
             },
-            'results': {
-                title: 'RESULTS',
-                body: 'Outcomes, deliverables, and project achievements.',
-                link: '#'
-            },
-            'execution': {
-                title: 'EXECUTION',
-                body: 'Implementation, processes, and performance metrics.',
-                link: '#'
-            },
-            'dir-1': {
+            '1.1': {
                 title: 'Purpose',
-                body: 'The fundamental reason for the organization\'s existence.',
-                link: '#'
+                body: 'The fundamental reason for the organization\'s existence.'
             },
-            'dir-2': {
-                title: 'Vision',
-                body: 'The aspirational future state of the organization.',
-                link: '#'
+            '1.1.1': {
+                title: 'Vision & Mission',
+                body: 'The aspirational future state and core objectives of the organization.'
             },
-            'dir-3': {
+            '1.1.2': {
                 title: 'Culture',
-                body: 'The values, beliefs, and behaviors that shape our organization.',
-                link: '#'
+                body: 'The values, beliefs, and behaviors that shape our organization.'
             },
-            'dir-4': {
-                title: 'Mission',
-                body: 'The core objectives and how we achieve our purpose.',
-                link: '#'
-            },
-            'dir-5': {
+            '1.2.2': {
                 title: 'Policies',
-                body: 'The guidelines and rules that govern our operations.',
-                link: '#'
+                body: 'The guidelines and rules that govern our operations.'
             },
-            'res-1': {
+            '2': {
+                title: 'RESULTS',
+                body: 'Outcomes, deliverables, and project achievements.'
+            },
+            '2.1': {
                 title: 'Deliverables',
-                body: 'Tangible outputs and products created by the organization.',
-                link: '#'
+                body: 'Tangible outputs and products created by the organization.'
             },
-            'res-2': {
+            '2.1.1': {
                 title: 'Milestones',
-                body: 'Key achievements and progress markers in project timelines.',
-                link: '#'
+                body: 'Key achievements and progress markers in project timelines.'
             },
-            'res-3': {
+            '2.2.1': {
                 title: 'Products',
-                body: 'Final products and services delivered to stakeholders.',
-                link: '#'
+                body: 'Final products and services delivered to stakeholders.'
             },
-            'exe-1': {
+            '3': {
+                title: 'EXECUTION',
+                body: 'Implementation, processes, and performance metrics.'
+            },
+            '3.1': {
                 title: 'Risk Management',
-                body: 'Identifying, assessing, and mitigating organizational risks.',
-                link: '#'
+                body: 'Identifying, assessing, and mitigating organizational risks.'
             },
-            'exe-2': {
+            '3.2': {
                 title: 'Process Landscapes',
-                body: 'The comprehensive view of all organizational processes.',
-                link: '#'
+                body: 'The comprehensive view of all organizational processes.'
             },
-            'exe-3': {
+            '3.3': {
                 title: 'KPI',
-                body: 'Key Performance Indicators that measure organizational success.',
-                link: '#'
+                body: 'Key Performance Indicators that measure organizational success.'
             }
         };
 
         document.querySelectorAll('.main-circle, .small-circle').forEach(circle => {
             circle.addEventListener('click', function() {
-                const key = this.getAttribute('data-key');
-
-                if (key && modalData[key]) {
-                    openModal(key);
+                const sectionKey = this.getAttribute('data-section-key');
+                const fileLink = this.getAttribute('data-link');
+                if (sectionKey) {
+                    openModal(sectionKey, fileLink);
                 }
             });
         });
 
-        function openModal(key) {
-            const data = modalData[key];
-            document.getElementById('modal-title').textContent = data.title;
-            document.getElementById('modal-body').textContent = data.body;
-            document.getElementById('modal-link').href = data.link;
+        function openModal(sectionKey, fileLink) {
+            const title = modalData[sectionKey]?.title || 'Section ' + sectionKey;
+            const description = modalData[sectionKey]?.body || '';
+
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-body').textContent = description;
+
+            // Display document link if available
+            const documentsContainer = document.getElementById('modal-documents');
+            documentsContainer.innerHTML = '';
+
+            if (fileLink) {
+                const docItem = document.createElement('div');
+                docItem.className = 'document-item';
+
+                const docLink = document.createElement('a');
+                docLink.className = 'document-link';
+                docLink.href = fileLink;
+                docLink.target = '_blank';
+                docLink.textContent = 'Open';
+
+                docItem.appendChild(docLink);
+                documentsContainer.appendChild(docItem);
+            } else {
+                const noDocsMsg = document.createElement('p');
+                noDocsMsg.style.color = '#999';
+                noDocsMsg.style.fontStyle = 'italic';
+                noDocsMsg.textContent = 'No documents available for this section.';
+                documentsContainer.appendChild(noDocsMsg);
+            }
+
             document.getElementById('modal').classList.add('active');
         }
 
