@@ -418,61 +418,45 @@
                 body: 'Key Performance Indicators that measure organizational success.'
             }
         };
-
+        
         document.querySelectorAll('.main-circle, .small-circle').forEach(circle => {
             circle.addEventListener('click', function() {
                 const sectionKey = this.getAttribute('data-section-key');
                 const fileLink = this.getAttribute('data-link');
-                if (sectionKey) {
-                    openModal(sectionKey, fileLink);
+                
+                if (fileLink) {
+                    // If the element has a link, open it in a new tab
+                    window.open(fileLink, '_blank');
+                } else if (sectionKey) {
+                    // If no link but has a section key, open the modal
+                    openModal(sectionKey);
                 }
             });
         });
-
-        function openModal(sectionKey, fileLink) {
+        
+        function openModal(sectionKey) {
             const title = modalData[sectionKey]?.title || 'Section ' + sectionKey;
             const description = modalData[sectionKey]?.body || '';
-
+            
             document.getElementById('modal-title').textContent = title;
             document.getElementById('modal-body').textContent = description;
-
-            // Display document link if available
-            const documentsContainer = document.getElementById('modal-documents');
-            documentsContainer.innerHTML = '';
-
-            if (fileLink) {
-                const docItem = document.createElement('div');
-                docItem.className = 'document-item';
-
-                const docLink = document.createElement('a');
-                docLink.className = 'document-link';
-                docLink.href = fileLink;
-                docLink.target = '_blank';
-                docLink.textContent = 'Open';
-
-                docItem.appendChild(docLink);
-                documentsContainer.appendChild(docItem);
-            } else {
-                const noDocsMsg = document.createElement('p');
-                noDocsMsg.style.color = '#999';
-                noDocsMsg.style.fontStyle = 'italic';
-                noDocsMsg.textContent = 'No documents available for this section.';
-                documentsContainer.appendChild(noDocsMsg);
-            }
-
+            
+            // Clear the documents container
+            document.getElementById('modal-documents').innerHTML = '';
+            
             document.getElementById('modal').classList.add('active');
         }
-
+        
         function closeModal() {
             document.getElementById('modal').classList.remove('active');
         }
-
+        
         document.getElementById('modal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
         });
-
+        
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeModal();
