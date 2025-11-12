@@ -10,7 +10,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             width: 100vw;
             height: 100vh;
@@ -20,7 +19,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
         }
-
         .main-container {
             position: relative;
             width: 90vmin;
@@ -28,7 +26,6 @@
             max-width: 900px;
             max-height: 900px;
         }
-
         .outer-circle {
             position: absolute;
             width: 100%;
@@ -54,7 +51,6 @@
             z-index: 0;
             overflow: hidden;
         }
-
         .inner-background {
             width: 100%;
             height: 100%;
@@ -76,7 +72,6 @@
             z-index: 1;
             overflow: hidden;
         }
-
         .center-circle {
             position: absolute;
             width: 16%;
@@ -91,19 +86,17 @@
             align-items: center;
             color: white;
             font-weight: 900;
-            font-size: 1.6vmin;
+            font-size: 2.2vmin;
             letter-spacing: 0.5px;
             z-index: 10;
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
-
         .center-circle:hover {
             transform: translate(-50%, -50%) scale(1.05);
             box-shadow: 0 12px 40px rgba(0,0,0,0.4);
         }
-
         .main-circle {
             position: absolute;
             width: 20%;
@@ -114,40 +107,35 @@
             align-items: center;
             color: white;
             font-weight: 900;
-            font-size: 1.8vmin;
+            font-size: 2.4vmin;
             text-align: center;
             z-index: 5;
             box-shadow: 0 8px 24px rgba(0,0,0,0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
-
         .main-circle:hover {
             transform: translateX(-50%) scale(1.05);
             box-shadow: 0 12px 32px rgba(0,0,0,0.3);
         }
-
         .direction {
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             top: 25%;
             left: 50%;
             transform: translateX(-50%);
         }
-
         .results {
             background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
             bottom: 30%;
             left: 38%;
-						transform: translateX(-50%);
+            transform: translateX(-50%);
         }
-
         .execution {
             background: linear-gradient(135deg, #5a6d9d 0%, #3d4d8d 100%);
             bottom: 30%;
             right: 18%;
-					transform: translateX(-50%);
+            transform: translateX(-50%);
         }
-
         .small-circle {
             position: absolute;
             width: 14%;
@@ -158,7 +146,7 @@
             justify-content: center;
             align-items: center;
             color: #333;
-            font-size: 1.5vmin;
+            font-size: 1.9vmin;
             font-weight: 700;
             text-align: center;
             padding: 5px;
@@ -168,27 +156,28 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
-
         .small-circle:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(0,0,0,0.25);
             border-width: 5px;
         }
-
         .dir-1 { top: 15%; left: 16%; border: 3px solid #4facfe; }
         .dir-2 { top: 6%; left: 28%; border: 3px solid #4facfe; }
         .dir-3 { top: 4%; left: 43%; border: 3px solid #4facfe; }
         .dir-4 { top: 6%; right: 28%; border: 3px solid #4facfe; }
         .dir-5 { top: 15%; right: 16%; border: 3px solid #4facfe; }
-
-        .res-1 { bottom: 35%; left: 8%; border: 3px solid #43e97b; }
-        .res-2 { bottom: 20%; left: 12%; border: 3px solid #43e97b; }
-        .res-3 { bottom: 10%; left: 25%; border: 3px solid #43e97b; }
-
-        .exe-1 { bottom: 35%; right: 8%; border: 3px solid #5a6d9d; }
-        .exe-2 { bottom: 20%; right: 12%; border: 3px solid #5a6d9d; }
-        .exe-3 { bottom: 10%; right: 25%; border: 3px solid #5a6d9d; }
-
+        .res-1 {  width: 15%;
+            height: 15%; bottom: 35%; left: 8%; border: 3px solid #43e97b; }
+        .res-2 {  width: 15%;
+            height: 15%; bottom: 19.5%; left: 12.5%; border: 3px solid #43e97b; }
+        .res-3 {  width: 15%;
+            height: 15%; bottom: 10%; left: 25.5%; border: 3px solid #43e97b; }
+        .exe-1 { font-size: 1.7vmin; width: 15%;
+            height: 15%; bottom: 35%; right: 8%; border: 3px solid #5a6d9d; }
+        .exe-2 {  width: 15%;
+            height: 15%; bottom: 19.5%; right: 12.5%; border: 3px solid #5a6d9d; }
+        .exe-3 {  width: 15%;
+            height: 15%; bottom: 10%; right: 25.5%; border: 3px solid #5a6d9d; }
         .modal {
             display: none;
             position: fixed;
@@ -200,14 +189,12 @@
             background-color: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(5px);
         }
-
         .modal.active {
             display: flex;
             justify-content: center;
             align-items: center;
             animation: fadeIn 0.3s ease;
         }
-
         .modal-content {
             background: white;
             padding: 40px;
@@ -220,21 +207,18 @@
             position: relative;
             animation: slideUp 0.3s ease;
         }
-
         .modal-header {
             font-size: 2.5rem;
             font-weight: 900;
             margin-bottom: 20px;
             color: #333;
         }
-
         .modal-body {
             font-size: 1.1rem;
             line-height: 1.8;
             color: #555;
             margin-bottom: 20px;
         }
-
         .modal-link {
             display: inline-block;
             padding: 12px 24px;
@@ -247,12 +231,10 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             margin-top: 10px;
         }
-
         .modal-link:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
-
         .document-item {
             margin-bottom: 15px;
             padding: 15px;
@@ -260,14 +242,12 @@
             border-radius: 8px;
             border-left: 4px solid #667eea;
         }
-
         .document-name {
             font-size: 1.1rem;
             font-weight: 700;
             color: #333;
             margin-bottom: 8px;
         }
-
         .document-link {
             display: inline-block;
             padding: 8px 16px;
@@ -279,12 +259,10 @@
             font-size: 0.9rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .document-link:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
-
         .modal-close {
             position: absolute;
             top: 15px;
@@ -297,16 +275,13 @@
             border: none;
             transition: color 0.3s ease;
         }
-
         .modal-close:hover {
             color: #333;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         @keyframes slideUp {
             from {
                 transform: translateY(50px);
@@ -317,7 +292,6 @@
                 opacity: 1;
             }
         }
-
     </style>
 </head>
 <body>
@@ -325,70 +299,58 @@
         <div class="outer-circle">
             <div class="inner-background">
                 <div class="center-circle">EU4DUAL</div>
-
                 <div class="main-circle direction" data-section-key="1">DIRECTION</div>
                 <div class="main-circle results" data-section-key="2">RESULTS</div>
                 <div class="main-circle execution" data-section-key="3">EXECUTION</div>
-
                 <div class="small-circle dir-1" data-section-key="1.1">Purpose</div>
-                <div class="small-circle dir-2" data-section-key="1.1.1" data-link="https://fileshare.knowledgeinnovation.eu/external/b587c12c68248e792af0cd99806b8de2a6d958f7f4430152c05e2ea12c6bc5f3">Vision</div>
-                <div class="small-circle dir-3" data-section-key="1.1.2">Culture</div>
-                <div class="small-circle dir-4" data-section-key="1.1.1" data-link="https://fileshare.knowledgeinnovation.eu/external/b587c12c68248e792af0cd99806b8de2a6d958f7f4430152c05e2ea12c6bc5f3">Mission</div>
-                <div class="small-circle dir-5" data-section-key="1.2.2" data-link="https://fileshare.knowledgeinnovation.eu/external/79b664406eec4852940c230674054d72a5fc0a90f129f6d5c8d219beee3c69de">Policies</div>
-
-                <div class="small-circle res-1" data-section-key="2.1">Deliverables</div>
-                <div class="small-circle res-2" data-section-key="2.1.1" data-link="https://fileshare.knowledgeinnovation.eu/external/e97f978605a9378744b12cbf399be72f5417968731012fa6cbaba03312016c80">Milestones</div>
-                <div class="small-circle res-3" data-section-key="2.2.1" data-link="https://fileshare.knowledgeinnovation.eu/external/06f22ed6d09f690c40f06ab558d63f2e69f3c1742e40fa6645feda421753c903">Products</div>
-
-                <div class="small-circle exe-1" data-section-key="3.1">Risk Management</div>
-                <div class="small-circle exe-2" data-section-key="3.2">Process Landscapes</div>
-                <div class="small-circle exe-3" data-section-key="3.3">KPI</div>
+                <div class="small-circle dir-2" data-section-key="1.1.1">Vision <br>&<br> Mission</div>
+                <div class="small-circle dir-3" data-section-key="1.2.1">Strategy</div>
+                <div class="small-circle dir-4" data-section-key="1.1.2">Culture</div>
+                <div class="small-circle dir-5" data-section-key="1.2.2" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:Policy_Documentation_Report">Policies</div>
+                <div class="small-circle res-1" data-section-key="2.1" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:Deliverables_Kanban_Report">Deliverables</div>
+                <div class="small-circle res-2" data-section-key="2.1.1" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:Milestones_Report">Milestones</div>
+                <div class="small-circle res-3" data-section-key="2.2.1">Products</div>
+                <div class="small-circle exe-1" data-section-key="3.1" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:Risks_Report">Risk Management</div>
+                <div class="small-circle exe-2" data-section-key="3.2" data-link="https://eu4dual.knowledgeinnovation.eu/#Page:Process_Map">Process Landscapes</div>
+                <div class="small-circle exe-3" data-section-key="3.3" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:KPIs_Report">KPI</div>
             </div>
         </div>
-
         <svg viewBox="0 0 900 900" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 15;">
             <defs>
                 <path id="leftPath" d="M 20,475 A 410,410 0 0,0 500,870" fill="none"/>
                 <path id="topPath" d="M 175,130 A 410,410 0 0,1 760,170" fill="none"/>
                 <path id="rightPath" d="M 590,860 A 425,415 0 0,0 710,130" fill="none"/>
             </defs>
-
             <text fill="white" font-size="16" font-weight="bold" letter-spacing="3" style="text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
                 <textPath href="#leftPath" startOffset="0%">
                     RELEVANCE & USABILITY | PERFORMANCE
                 </textPath>
             </text>
-
             <text fill="white" font-size="16" font-weight="bold" letter-spacing="3" style="text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
                 <textPath href="#topPath" startOffset="0%">
                     APPROACH | DEPLOYMENT | ASSESSMENT & REFINEMENT
                 </textPath>
             </text>
-
             <text fill="white" font-size="16" font-weight="bold" letter-spacing="3" style="text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
                 <textPath href="#rightPath" startOffset="0%">
                     APPROACH | DEPLOYMENT | ASSESSMENT & REFINEMENT
                 </textPath>
             </text>
         </svg>
-
         <svg viewBox="0 0 900 900" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 4;">
             <line x1="370" y1="325" x2="270" y2="265" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
             <line x1="390" y1="275" x2="350" y2="205" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
             <line x1="450" y1="265" x2="450" y2="190" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
             <line x1="506" y1="275" x2="550" y2="205" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
             <line x1="530" y1="325" x2="630" y2="265" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
-
-            <line x1="280" y1="530" x2="225" y2="520" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
-            <line x1="290" y1="580" x2="245" y2="605" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
-            <line x1="342" y1="610" x2="320" y2="665" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
-
-            <line x1="625" y1="530" x2="675" y2="520" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
-            <line x1="605" y1="580" x2="655" y2="605" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
-            <line x1="560" y1="607" x2="580" y2="663" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
+            <line x1="280" y1="530" x2="233" y2="520" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
+            <line x1="290" y1="580" x2="255" y2="598" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
+            <line x1="342" y1="610" x2="325" y2="652" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
+            <line x1="625" y1="530" x2="667" y2="520" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
+            <line x1="605" y1="580" x2="644" y2="600" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
+            <line x1="560" y1="607" x2="575" y2="650" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
         </svg>
     </div>
-
     <div id="modal" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -397,7 +359,6 @@
             <div id="modal-documents"></div>
         </div>
     </div>
-
     <script>
         const modalData = {
             '1': {
@@ -411,6 +372,10 @@
             '1.1.1': {
                 title: 'Vision & Mission',
                 body: 'The aspirational future state and core objectives of the organization.'
+            },
+            '1.2.1': {
+                title: 'Strategy',
+                body: 'The comprehensive plan for achieving our vision and mission.'
             },
             '1.1.2': {
                 title: 'Culture',
