@@ -74,28 +74,31 @@
         }
         .center-circle {
             position: absolute;
-            width: 16%;
-            height: 16%;
+            width: 17%;
+            height: 17%;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: white;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
-            font-weight: 900;
-            font-size: 2.2vmin;
-            letter-spacing: 0.5px;
             z-index: 10;
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            overflow: hidden;
         }
-        .center-circle:hover {
+        /* .center-circle:hover {
             transform: translate(-50%, -50%) scale(1.05);
             box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        } */
+        .center-circle img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            display: block;
         }
         .main-circle {
             position: absolute;
@@ -136,10 +139,10 @@
             right: 18%;
             transform: translateX(-50%);
         }
-        .small-circle {
+        .medium-circle {
             position: absolute;
-            width: 14%;
-            height: 14%;
+            width: 18%;
+            height: 18%;
             border-radius: 50%;
             background: white;
             display: flex;
@@ -147,7 +150,7 @@
             align-items: center;
             color: #333;
             font-size: 1.9vmin;
-            font-weight: 700;
+            font-weight: 600;
             text-align: center;
             padding: 5px;
             z-index: 8;
@@ -156,28 +159,113 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
-        .small-circle:hover {
+        .medium-circle:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(0,0,0,0.25);
             border-width: 5px;
         }
-        .dir-1 { top: 15%; left: 16%; border: 3px solid #4facfe; }
-        .dir-2 { top: 6%; left: 28%; border: 3px solid #4facfe; }
-        .dir-3 { top: 4%; left: 43%; border: 3px solid #4facfe; }
-        .dir-4 { top: 6%; right: 28%; border: 3px solid #4facfe; }
-        .dir-5 { top: 15%; right: 16%; border: 3px solid #4facfe; }
-        .res-1 {  width: 15%;
-            height: 15%; bottom: 35%; left: 8%; border: 3px solid #43e97b; }
-        .res-2 {  width: 15%;
-            height: 15%; bottom: 19.5%; left: 12.5%; border: 3px solid #43e97b; }
-        .res-3 {  width: 15%;
-            height: 15%; bottom: 10%; left: 25.5%; border: 3px solid #43e97b; }
-        .exe-1 { font-size: 1.7vmin; width: 15%;
-            height: 15%; bottom: 35%; right: 8%; border: 3px solid #5a6d9d; }
-        .exe-2 {  width: 15%;
-            height: 15%; bottom: 19.5%; right: 12.5%; border: 3px solid #5a6d9d; }
-        .exe-3 {  width: 15%;
-            height: 15%; bottom: 10%; right: 25.5%; border: 3px solid #5a6d9d; }
+        .small-circle {
+            position: absolute;
+            width: 12%;
+            height: 12%;
+            border-radius: 50%;
+            background: white;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4vmin;
+            font-weight: 600;
+            text-align: center;
+            padding: 5px;
+            z-index: 9;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            line-height: 1.1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0;
+            border: 3px solid;
+        }
+        .small-circle.visible {
+            display: flex;
+            animation: popIn 0.3s ease forwards;
+        }
+        .small-circle:hover {
+            transform: scale(1.15);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+            color: white !important;
+        }
+        /* Direction small circles */
+        .small-circle[data-parent="1.2.1"] {
+            color: #4facfe;
+            border-color: #4facfe;
+        }
+        .small-circle[data-parent="1.2.1"]:hover {
+            background: #4facfe;
+        }
+        /* Results small circles */
+        .small-circle[data-parent="2.1"],
+        .small-circle[data-parent="2.2.1"] {
+            color: #43e97b;
+            border-color: #43e97b;
+        }
+        .small-circle[data-parent="2.1"]:hover,
+        .small-circle[data-parent="2.2.1"]:hover {
+            background: #43e97b;
+        }
+        /* Execution small circles */
+        .small-circle[data-parent="3.1"],
+        .small-circle[data-parent="3.2"],
+        .small-circle[data-parent="3.3"] {
+            color: #5a6d9d;
+            border-color: #5a6d9d;
+        }
+        .small-circle[data-parent="3.1"]:hover,
+        .small-circle[data-parent="3.2"]:hover,
+        .small-circle[data-parent="3.3"]:hover {
+            background: #5a6d9d;
+        }
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .dir-2 {top: 6%; left: 28%; border: 3px solid #4facfe; }
+        .dir-4 { font-size: 1.7vmin; top: 6%; right: 28%; border: 3px solid #4facfe; }
+        .res-1 {  width: 18%; height: 18%; bottom: 34%; left: 6%; border: 3px solid #43e97b; }
+        .res-3 {  width: 18%; height: 18%; bottom: 12%; left: 16.5%; border: 3px solid #43e97b; }
+        .exe-1 {  width: 18%; height: 18%; bottom: 45%; right: 9%; border: 3px solid #5a6d9d; }
+        .exe-2 {  width: 18%; height: 18%; bottom: 21.5%; right: 8.5%; border: 3px solid #5a6d9d; }
+        .exe-3 { font-size: 1.7vmin; width: 18%; height: 18%; bottom: 7%; right: 28.5%; border: 3px solid #5a6d9d; }
+
+        /* Small circle positions - DIRECTION (Organisational Culture & Leadership 1.2.1) */
+        .dir-small-1 { top: 10%; right: 18%; }
+        .dir-small-2 { top: 22%; right: 28%; }
+        .dir-small-3 { top: 0.5%; right: 40.5%; }
+
+        /* Small circle positions - RESULTS (Stakeholder perceptions 2.1) */
+        .res-small-1 { bottom: 27%; left: 9%; }
+
+        /* Small circle positions - RESULTS (Strategic & Operational performance 2.2.1) */
+        .res-small-2 { bottom: 21%; left: 8%; }
+        .res-small-3 { bottom: 7%; left: 30%; }
+
+        /* Small circle positions - EXECUTION (Engaging stakeholders 3.1) */
+        .exe-small-1 { bottom: 52%; right: 25%; }
+        .exe-small-2 { bottom: 42%; right: 0.5%; }
+
+        /* Small circle positions - EXECUTION (Creating sustainable value 3.2) */
+        .exe-small-3 { bottom: 33%; right: 1.5%; }
+        .exe-small-4 { bottom: 12%; right: 14%; }
+
+        /* Small circle positions - EXECUTION (Driving performance & transformation 3.3) */
+        .exe-small-5 { bottom: 10%; right: 18%; }
+        .exe-small-6 { bottom: 1.5%; right: 41%; }
+        .exe-small-7 { bottom: 19.5%; right: 40.5%; }
         .modal {
             display: none;
             position: fixed;
@@ -298,21 +386,47 @@
     <div class="main-container">
         <div class="outer-circle">
             <div class="inner-background">
-                <div class="center-circle">EU4DUAL</div>
+                <div class="center-circle">
+                    <img src="./eu4dual_logo.png" alt="EU4DUAL Logo" onerror="console.error('Failed to load logo:', this.src); this.style.display='none';">
+                </div>
                 <div class="main-circle direction" data-section-key="1">DIRECTION</div>
                 <div class="main-circle results" data-section-key="2">RESULTS</div>
                 <div class="main-circle execution" data-section-key="3">EXECUTION</div>
-                <div class="small-circle dir-1" data-section-key="1.1">Purpose</div>
-                <div class="small-circle dir-2" data-section-key="1.1.1">Vision <br>&<br> Mission</div>
-                <div class="small-circle dir-3" data-section-key="1.1.2">Quality Culture</div>
-                <div class="small-circle dir-4" data-section-key="1.2.1">Strategy</div>
-                <div class="small-circle dir-5" data-section-key="1.2.2" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:Policy_Documentation_Report">Policies</div>
-                <div class="small-circle res-1" data-section-key="2.1" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:Deliverables_Kanban_Report">Deliverables</div>
-                <div class="small-circle res-2" data-section-key="2.1.1" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:Milestones_Report">Milestones</div>
-                <div class="small-circle res-3" data-section-key="2.2.1">Products</div>
-                <div class="small-circle exe-1" data-section-key="3.1" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:Risks_Report">Risk Management</div>
-                <div class="small-circle exe-2" data-section-key="3.2" data-link="https://eu4dual.knowledgeinnovation.eu/#Page:Process_Map">Process Landscape</div>
-                <div class="small-circle exe-3" data-section-key="3.3" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:KPIs_Report">KPIs</div>
+              
+                <div class="medium-circle dir-2" data-section-key="1.1.1">Purpose, Vision & Strategy</div>
+                <div class="medium-circle dir-4" data-section-key="1.2.1" data-has-children="true">Organisational Culture & Leadership</div>
+              
+                <div class="medium-circle res-1" data-section-key="2.1" data-has-children="true">Stakeholder perceptions</div>
+                <div class="medium-circle res-3" data-section-key="2.2.1" data-has-children="true">Strategic & Operational performance</div>
+              
+                <div class="medium-circle exe-1" data-section-key="3.1" data-has-children="true">Engaging stakeholders</div>
+                <div class="medium-circle exe-2" data-section-key="3.2" data-has-children="true">Creating sustainable value</div>
+                <div class="medium-circle exe-3" data-section-key="3.3" data-has-children="true">Driving performance & transformation </div>
+
+                <!-- Third level circles for Organisational Culture & Leadership (1.2.1) -->
+                <div class="small-circle dir-small-1" data-parent="1.2.1" data-section-key="1.2.1.1">Quality Culture</div>
+                <div class="small-circle dir-small-2" data-parent="1.2.1" data-section-key="1.2.1.2">Policies</div>
+                <div class="small-circle dir-small-3" data-parent="1.2.1" data-section-key="1.2.1.3">Governance</div>
+
+                <!-- Third level circles for Stakeholder perceptions (2.1) -->
+                <div class="small-circle res-small-1" data-parent="2.1" data-section-key="2.1.1" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:Deliverables_Kanban_Report">Products</div>
+
+                <!-- Third level circles for Strategic & Operational performance (2.2.1) -->
+                <div class="small-circle res-small-2" data-parent="2.2.1" data-section-key="2.2.1.1">Deliverables</div>
+                <div class="small-circle res-small-3" data-parent="2.2.1" data-section-key="2.2.1.2">Milestones</div>
+
+                <!-- Third level circles for Engaging stakeholders (3.1) -->
+                <div class="small-circle exe-small-1" data-parent="3.1" data-section-key="3.1.1">RADAR</div>
+                <div class="small-circle exe-small-2" data-parent="3.1" data-section-key="3.1.2">Feedback-Loops</div>
+
+                <!-- Third level circles for Creating sustainable value (3.2) -->
+                <div class="small-circle exe-small-3" data-parent="3.2" data-section-key="3.2.1" data-link="https://eu4dual.knowledgeinnovation.eu/#Page:Process_Map">Impact Reports</div>
+                <div class="small-circle exe-small-4" data-parent="3.2" data-section-key="3.2.2">Best Practices</div>
+
+                <!-- Third level circles for Driving performance & transformation (3.3) -->
+                <div class="small-circle exe-small-5" data-parent="3.3" data-section-key="3.3.1" data-link="https://eu4dual.knowledgeinnovation.eu/#Page:Process_Map">Process landscape</div>
+                <div class="small-circle exe-small-6" data-parent="3.3" data-section-key="3.3.2" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:KPIs_Report">KPIs</div>
+                <div class="small-circle exe-small-7" data-parent="3.3" data-section-key="3.3.3" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:Risks_Report">Risk management</div>
             </div>
         </div>
         <svg viewBox="0 0 900 900" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 15;">
@@ -337,18 +451,17 @@
                 </textPath>
             </text>
         </svg>
-        <svg viewBox="0 0 900 900" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 4;">
-            <line x1="370" y1="325" x2="270" y2="265" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
-            <line x1="390" y1="275" x2="350" y2="205" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
-            <line x1="450" y1="265" x2="450" y2="190" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
-            <line x1="506" y1="275" x2="550" y2="205" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
-            <line x1="530" y1="325" x2="630" y2="265" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
-            <line x1="280" y1="530" x2="233" y2="520" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
-            <line x1="290" y1="580" x2="255" y2="598" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
-            <line x1="342" y1="610" x2="325" y2="652" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
-            <line x1="625" y1="530" x2="667" y2="520" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
-            <line x1="605" y1="580" x2="644" y2="600" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
-            <line x1="560" y1="607" x2="575" y2="650" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
+        <svg viewBox="0 0 900 900" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 1;">
+            
+            <line x1="395" y1="275" x2="373" y2="232" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
+            <line x1="506" y1="275" x2="528" y2="232" stroke="#4facfe" stroke-width="2" opacity="0.3"/>
+            
+            <line x1="280" y1="530" x2="237" y2="522" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
+            <line x1="320" y1="595" x2="293" y2="630" stroke="#43e97b" stroke-width="2" opacity="0.3"/>
+
+            <line x1="615" y1="490" x2="655" y2="462" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
+            <line x1="615" y1="565" x2="650" y2="580" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
+            <line x1="540" y1="607" x2="542" y2="655" stroke="#5a6d9d" stroke-width="2" opacity="0.3"/>
         </svg>
     </div>
     <div id="modal" class="modal">
@@ -374,8 +487,8 @@
                 body: 'The aspirational future state and core objectives of the organization.'
             },
             '1.2.1': {
-                title: 'Strategy',
-                body: 'The comprehensive plan for achieving our vision and mission.'
+                title: 'Organisational Culture & Leadership',
+                body: 'The values, beliefs, leadership approaches, and governance that shape our organization.'
             },
             '1.1.2': {
                 title: 'Quality Culture',
@@ -416,15 +529,78 @@
             '3.3': {
                 title: 'KPIs',
                 body: 'Key Performance Indicators that measure organizational success.'
+            },
+            // Third level - DIRECTION
+            '1.2.1.1': {
+                title: 'Quality Culture',
+                body: 'The values, beliefs, and behaviors that shape our organization and drive quality excellence.'
+            },
+            '1.2.1.2': {
+                title: 'Policies',
+                body: 'The guidelines, rules, and standards that govern our operations and decision-making.'
+            },
+            '1.2.1.3': {
+                title: 'Governance',
+                body: 'The framework of rules, practices, and processes for organizational direction and control.'
+            },
+            // Third level - RESULTS
+            '2.1.1': {
+                title: 'Products',
+                body: 'Final products and services delivered to stakeholders.'
+            },
+            '2.2.1.1': {
+                title: 'Deliverables',
+                body: 'Tangible outputs and results from project activities.'
+            },
+            '2.2.1.2': {
+                title: 'Milestones',
+                body: 'Key achievements and progress markers in project timelines.'
+            },
+            // Third level - EXECUTION
+            '3.1.1': {
+                title: 'RADAR',
+                body: 'Results, Approach, Deployment, Assessment, and Refinement methodology.'
+            },
+            '3.1.2': {
+                title: 'Feedback-Loops',
+                body: 'Continuous feedback mechanisms for stakeholder engagement.'
+            },
+            '3.2.1': {
+                title: 'Impact Reports',
+                body: 'Comprehensive reports measuring the impact and value creation.'
+            },
+            '3.2.2': {
+                title: 'Best Practices',
+                body: 'Proven methods and approaches that drive sustainable value.'
+            },
+            '3.3.1': {
+                title: 'Process Landscape',
+                body: 'The comprehensive view of all organizational processes and workflows.'
+            },
+            '3.3.2': {
+                title: 'KPIs',
+                body: 'Key Performance Indicators that measure organizational success.'
+            },
+            '3.3.3': {
+                title: 'Risk Management',
+                body: 'Identifying, assessing, and mitigating organizational risks.'
             }
         };
         
-        document.querySelectorAll('.main-circle, .small-circle').forEach(circle => {
-            circle.addEventListener('click', function() {
+        let activeParent = null;
+
+        // Main and medium circles click handlers
+        document.querySelectorAll('.main-circle, .medium-circle').forEach(circle => {
+            circle.addEventListener('click', function(e) {
+                e.stopPropagation();
                 const sectionKey = this.getAttribute('data-section-key');
+                const hasChildren = this.getAttribute('data-has-children') === 'true';
                 const fileLink = this.getAttribute('data-link');
-                
-                if (fileLink) {
+
+                // If this circle has children, show them
+                if (hasChildren) {
+                    showThirdLevelCircles(this, sectionKey);
+                } else if (fileLink) {
                     // If the element has a link, open it in a new tab
                     window.open(fileLink, '_blank');
                 } else if (sectionKey) {
@@ -432,6 +608,60 @@
                     openModal(sectionKey);
                 }
             });
+        });
+
+        // Small circles click handlers
+        document.querySelectorAll('.small-circle').forEach(circle => {
+            circle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const fileLink = this.getAttribute('data-link');
+                const sectionKey = this.getAttribute('data-section-key');
+
+                if (fileLink) {
+                    window.open(fileLink, '_blank');
+                } else if (sectionKey) {
+                    openModal(sectionKey);
+                }
+            });
+        });
+
+        function showThirdLevelCircles(parentElement, parentKey) {
+            // Hide all small circles first
+            document.querySelectorAll('.small-circle').forEach(sc => {
+                sc.classList.remove('visible');
+            });
+
+            // If clicking the same parent, toggle off
+            if (activeParent === parentKey) {
+                activeParent = null;
+                return;
+            }
+
+            activeParent = parentKey;
+
+            // Get all children of this parent
+            const children = document.querySelectorAll(`.small-circle[data-parent="${parentKey}"]`);
+            if (children.length === 0) return;
+
+            // Show children with a slight delay for each circle
+            children.forEach((child, index) => {
+                setTimeout(() => {
+                    child.classList.add('visible');
+                }, index * 100);
+            });
+        }
+
+        // Hide small circles when clicking outside (but not on modal)
+        document.addEventListener('click', function(e) {
+            // Don't hide if clicking on modal or modal content
+            if (e.target.closest('.modal') || e.target.closest('.modal-content')) {
+                return;
+            }
+
+            document.querySelectorAll('.small-circle').forEach(sc => {
+                sc.classList.remove('visible');
+            });
+            activeParent = null;
         });
         
         function openModal(sectionKey) {
@@ -452,6 +682,7 @@
         }
         
         document.getElementById('modal').addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent triggering the document click listener
             if (e.target === this) {
                 closeModal();
             }
