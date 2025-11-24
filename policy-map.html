@@ -409,7 +409,7 @@
                 <div class="small-circle dir-small-3" data-parent="1.2.1" data-section-key="1.2.1.3">Governance</div>
 
                 <!-- Third level circles for Stakeholder perceptions (2.1) -->
-                <div class="small-circle res-small-1" data-parent="2.1" data-section-key="2.1.1" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:Deliverables_Kanban_Report">Products</div>
+                <div class="small-circle res-small-1" data-parent="2.1" data-section-key="2.1.1">Products</div>
 
                 <!-- Third level circles for Strategic & Operational performance (2.2.1) -->
                 <div class="small-circle res-small-2" data-parent="2.2.1" data-section-key="2.2.1.1">Deliverables</div>
@@ -420,13 +420,13 @@
                 <div class="small-circle exe-small-2" data-parent="3.1" data-section-key="3.1.2">Feedback-Loops</div>
 
                 <!-- Third level circles for Creating sustainable value (3.2) -->
-                <div class="small-circle exe-small-3" data-parent="3.2" data-section-key="3.2.1" data-link="https://eu4dual.knowledgeinnovation.eu/#Page:Process_Map">Impact Reports</div>
+                <div class="small-circle exe-small-3" data-parent="3.2" data-section-key="3.2.1">Impact Reports</div>
                 <div class="small-circle exe-small-4" data-parent="3.2" data-section-key="3.2.2">Best Practices</div>
 
                 <!-- Third level circles for Driving performance & transformation (3.3) -->
-                <div class="small-circle exe-small-5" data-parent="3.3" data-section-key="3.3.1" data-link="https://eu4dual.knowledgeinnovation.eu/#Page:Process_Map">Process landscape</div>
-                <div class="small-circle exe-small-6" data-parent="3.3" data-section-key="3.3.2" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:KPIs_Report">KPIs</div>
-                <div class="small-circle exe-small-7" data-parent="3.3" data-section-key="3.3.3" data-link="https://eu4dual.knowledgeinnovation.eu/#Report:Risks_Report">Risk management</div>
+                <div class="small-circle exe-small-5" data-parent="3.3" data-section-key="3.3.1">Process landscape</div>
+                <div class="small-circle exe-small-6" data-parent="3.3" data-section-key="3.3.2">KPIs</div>
+                <div class="small-circle exe-small-7" data-parent="3.3" data-section-key="3.3.3">Risk management</div>
             </div>
         </div>
         <svg viewBox="0 0 900 900" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 15;">
@@ -473,6 +473,9 @@
         </div>
     </div>
     <script>
+        // Global variable to store document data
+        let documentData = [];
+
         const modalData = {
             '1': {
                 title: 'DIRECTION',
@@ -586,8 +589,25 @@
                 body: 'Identifying, assessing, and mitigating organizational risks.'
             }
         };
-        
+
         let activeParent = null;
+
+        // Load the document configuration from a JSON file
+        async function loadDocumentConfig() {
+            try {
+                const response = await fetch('https://eu4dual-process-documents.s3.eu-central-1.amazonaws.com/config/policy-map-config.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const config = await response.json();
+                documentData = config.documents;
+
+                console.log('Loaded policy map documents:', documentData);
+            } catch (error) {
+                console.error('Error loading document config:', error);
+                // If unable to load config, show error in console but don't break the page
+            }
+        }
 
         // Main and medium circles click handlers
         document.querySelectorAll('.main-circle, .medium-circle').forEach(circle => {
@@ -595,16 +615,11 @@
                 e.stopPropagation();
                 const sectionKey = this.getAttribute('data-section-key');
                 const hasChildren = this.getAttribute('data-has-children') === 'true';
-                const fileLink = this.getAttribute('data-link');
 
                 // If this circle has children, show them
                 if (hasChildren) {
                     showThirdLevelCircles(this, sectionKey);
-                } else if (fileLink) {
-                    // If the element has a link, open it in a new tab
-                    window.open(fileLink, '_blank');
                 } else if (sectionKey) {
-                    // If no link but has a section key, open the modal
                     openModal(sectionKey);
                 }
             });
@@ -614,12 +629,9 @@
         document.querySelectorAll('.small-circle').forEach(circle => {
             circle.addEventListener('click', function(e) {
                 e.stopPropagation();
-                const fileLink = this.getAttribute('data-link');
                 const sectionKey = this.getAttribute('data-section-key');
 
-                if (fileLink) {
-                    window.open(fileLink, '_blank');
-                } else if (sectionKey) {
+                if (sectionKey) {
                     openModal(sectionKey);
                 }
             });
@@ -667,13 +679,30 @@
         function openModal(sectionKey) {
             const title = modalData[sectionKey]?.title || 'Section ' + sectionKey;
             const description = modalData[sectionKey]?.body || '';
-            
+
             document.getElementById('modal-title').textContent = title;
             document.getElementById('modal-body').textContent = description;
-            
+
             // Clear the documents container
-            document.getElementById('modal-documents').innerHTML = '';
-            
+            const documentsContainer = document.getElementById('modal-documents');
+            documentsContainer.innerHTML = '';
+
+            // Filter documents for this section
+            const sectionDocuments = documentData.filter(doc => doc.sectionKey === sectionKey);
+
+            // Add documents if they exist
+            if (sectionDocuments && sectionDocuments.length > 0) {
+                sectionDocuments.forEach((doc, index) => {
+                    const documentItem = document.createElement('div');
+                    documentItem.classList.add('document-item');
+                    documentItem.innerHTML = `
+                        <div class="document-name">${doc.fileName}</div>
+                        <a href="${doc.fileLink}" target="_blank" class="document-link">Open Document</a>
+                    `;
+                    documentsContainer.appendChild(documentItem);
+                });
+            }
+
             document.getElementById('modal').classList.add('active');
         }
         
@@ -692,6 +721,11 @@
             if (e.key === 'Escape') {
                 closeModal();
             }
+        });
+
+        // Load document configuration on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDocumentConfig();
         });
     </script>
 </body>
