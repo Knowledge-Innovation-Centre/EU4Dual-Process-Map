@@ -201,35 +201,46 @@
             background: linear-gradient(135deg, #f5a623 0%, #e8940f 100%);
             color: white !important;
         }
-        /* Direction small circles */
+        /* Direction small circles - Blue theme (non-highlighted) */
+        .small-circle[data-parent="1.1.1"]:not(.highlighted),
         .small-circle[data-parent="1.2.1"]:not(.highlighted) {
-            color: #4facfe;
-            border-color: #4facfe;
+            background: linear-gradient(135deg, #e8f5ff 0%, #cce7ff 100%);
+            border-color: #4facfe !important;
+            color: #2d8ada !important;
+            box-shadow: 0 4px 20px rgba(79, 172, 254, 0.3);
         }
+        .small-circle[data-parent="1.1.1"]:not(.highlighted):hover,
         .small-circle[data-parent="1.2.1"]:not(.highlighted):hover {
-            background: #4facfe;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white !important;
         }
-        /* Results small circles */
+        /* Results small circles - Emerald/Deep green shade */
         .small-circle[data-parent="2.1"],
         .small-circle[data-parent="2.2.1"] {
-            color: #43e97b;
-            border-color: #43e97b;
+            background: linear-gradient(135deg, #ecfdf5 0%, #a7f3d0 100%);
+            border-color: #10b981 !important;
+            color: #047857 !important;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
         }
         .small-circle[data-parent="2.1"]:hover,
         .small-circle[data-parent="2.2.1"]:hover {
-            background: #43e97b;
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            color: white !important;
         }
-        /* Execution small circles */
+        /* Execution small circles - Bright royal blue shade */
         .small-circle[data-parent="3.1"],
         .small-circle[data-parent="3.2"],
         .small-circle[data-parent="3.3"] {
-            color: #5a6d9d;
-            border-color: #5a6d9d;
+            background: linear-gradient(135deg, #eff6ff 0%, #bfdbfe 100%);
+            border-color: #3b82f6 !important;
+            color: #1d4ed8 !important;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35);
         }
         .small-circle[data-parent="3.1"]:hover,
         .small-circle[data-parent="3.2"]:hover,
         .small-circle[data-parent="3.3"]:hover {
-            background: #5a6d9d;
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            color: white !important;
         }
         @keyframes popIn {
             from {
@@ -248,6 +259,11 @@
         .exe-1 {  width: 18%; height: 18%; bottom: 45%; right: 9%; border: 3px solid #5a6d9d; }
         .exe-2 {  width: 18%; height: 18%; bottom: 21.5%; right: 8.5%; border: 3px solid #5a6d9d; }
         .exe-3 { font-size: 1.7vmin; width: 18%; height: 18%; bottom: 7%; right: 28.5%; border: 3px solid #5a6d9d; }
+
+        /* Small circle positions - PURPOSE, VISION & STRATEGY (1.1.1) */
+        .pvs-small-1 { top: 0.5%; left: 40.5%; }
+        .pvs-small-2 { top: 10%; left: 18%; }
+        .pvs-small-3 { top: 22%; left: 28%; }
 
         /* Small circle positions - DIRECTION (Organisational Culture & Leadership 1.2.1) */
         .dir-small-1 { top: 10%; right: 18%; }
@@ -400,7 +416,7 @@
                 <div class="main-circle results" data-section-key="2">RESULTS</div>
                 <div class="main-circle execution" data-section-key="3">EXECUTION</div>
               
-                <div class="medium-circle dir-2" data-section-key="1.1.1">Purpose, Vision & Strategy</div>
+                <div class="medium-circle dir-2" data-section-key="1.1.1" data-has-children="true">Purpose, Vision & Strategy</div>
                 <div class="medium-circle dir-4" data-section-key="1.2.1" data-has-children="true">Organisational Culture & Leadership</div>
               
                 <div class="medium-circle res-1" data-section-key="2.1" data-has-children="true">Stakeholder perceptions</div>
@@ -409,6 +425,11 @@
                 <div class="medium-circle exe-1" data-section-key="3.1" data-has-children="true">Engaging stakeholders</div>
                 <div class="medium-circle exe-2" data-section-key="3.2" data-has-children="true">Creating sustainable value</div>
                 <div class="medium-circle exe-3" data-section-key="3.3" data-has-children="true">Driving performance & transformation </div>
+
+                <!-- Third level circles for Purpose, Vision & Strategy (1.1.1) - HIGHLIGHTED -->
+                <div class="small-circle pvs-small-1 highlighted" data-parent="1.1.1" data-section-key="1.1.1.1">Purpose</div>
+                <div class="small-circle pvs-small-2 highlighted" data-parent="1.1.1" data-section-key="1.1.1.2">Vision</div>
+                <div class="small-circle pvs-small-3 highlighted" data-parent="1.1.1" data-section-key="1.1.1.3">Strategy</div>
 
                 <!-- Third level circles for Organisational Culture & Leadership (1.2.1) - HIGHLIGHTED -->
                 <div class="small-circle dir-small-1 highlighted" data-parent="1.2.1" data-section-key="1.2.1.1">Quality Culture</div>
@@ -493,8 +514,20 @@
                 body: 'The fundamental reason for the organization\'s existence.'
             },
             '1.1.1': {
-                title: 'Vision & Mission',
-                body: 'The aspirational future state and core objectives of the organization.'
+                title: 'Purpose, Vision & Strategy',
+                body: 'The fundamental pillars that guide our organization\'s direction and aspirations.'
+            },
+            '1.1.1.1': {
+                title: 'Purpose',
+                body: 'The fundamental reason for the organization\'s existence and the impact it seeks to create.'
+            },
+            '1.1.1.2': {
+                title: 'Vision',
+                body: 'The aspirational future state that the organization strives to achieve.'
+            },
+            '1.1.1.3': {
+                title: 'Strategy',
+                body: 'The roadmap and key initiatives designed to achieve organizational objectives.'
             },
             '1.2.1': {
                 title: 'Organisational Culture & Leadership',
@@ -513,32 +546,40 @@
                 body: 'Outcomes, deliverables, and project achievements.'
             },
             '2.1': {
-                title: 'Deliverables',
-                body: 'Tangible outputs and products created by the organization.'
+                title: 'Stakeholder perceptions',
+                body: 'How stakeholders view and evaluate our work and outputs.'
             },
             '2.1.1': {
-                title: 'Milestones',
-                body: 'Key achievements and progress markers in project timelines.'
-            },
-            '2.2.1': {
                 title: 'Products',
                 body: 'Final products and services delivered to stakeholders.'
+            },
+            '2.2.1': {
+                title: 'Strategic & Operational performance',
+                body: 'Measuring success against strategic and operational goals.'
+            },
+            '2.2.1.1': {
+                title: 'Deliverables',
+                body: 'Tangible outputs and results from project activities.'
+            },
+            '2.2.1.2': {
+                title: 'Milestones',
+                body: 'Key achievements and progress markers in project timelines.'
             },
             '3': {
                 title: 'EXECUTION',
                 body: 'Implementation, processes, and performance metrics.'
             },
             '3.1': {
-                title: 'Risk Management',
-                body: 'Identifying, assessing, and mitigating organizational risks.'
+                title: 'Engaging stakeholders',
+                body: 'Building and maintaining effective stakeholder relationships.'
             },
             '3.2': {
-                title: 'Process Landscape',
-                body: 'The comprehensive view of all organizational processes.'
+                title: 'Creating sustainable value',
+                body: 'Generating long-term value for all stakeholders.'
             },
             '3.3': {
-                title: 'KPIs',
-                body: 'Key Performance Indicators that measure organizational success.'
+                title: 'Driving performance & transformation',
+                body: 'Continuous improvement and organizational change initiatives.'
             },
             // Third level - DIRECTION
             '1.2.1.1': {
@@ -552,19 +593,6 @@
             '1.2.1.3': {
                 title: 'Governance',
                 body: 'The framework of rules, practices, and processes for organizational direction and control.'
-            },
-            // Third level - RESULTS
-            '2.1.1': {
-                title: 'Products',
-                body: 'Final products and services delivered to stakeholders.'
-            },
-            '2.2.1.1': {
-                title: 'Deliverables',
-                body: 'Tangible outputs and results from project activities.'
-            },
-            '2.2.1.2': {
-                title: 'Milestones',
-                body: 'Key achievements and progress markers in project timelines.'
             },
             // Third level - EXECUTION
             '3.1.1': {
