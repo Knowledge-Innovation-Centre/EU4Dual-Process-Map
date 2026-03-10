@@ -1,374 +1,572 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Process Diagram with Links</title>
-    <style>
-      :root { font-family: Arial; }
-      #hax { margin-bottom: 65px; }
-      #hax-2 { margin-bottom: 55px; }
-      * { --background-gray: #00000055; --background-yellow: #c99005; box-sizing: border-box; margin: 0; padding: 0; }
-      a { all: unset; cursor: pointer; transition: all 0.1s ease-in-out; }
-      a:hover { transform: scale(110%); box-shadow: 0px 0px 10px white; }
-      p { margin: 0; padding: 0; }
-      .container { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; }
-      .page { display: grid; grid-template-columns: 300px 1fr; gap: 3rem; transform-origin: top left; position: absolute; padding-left: 20px; padding-right: 20px; }
-      .chapter { padding: 16px 48px; border-radius: 3rem; background-color: var(--background-gray); margin: auto 0px; text-align: center; width: 200px; }
-      .title-row { display: flex; flex-direction: row; gap: 32px; align-items: flex-end; }
-      .rectangle { width: 450px; background-color: var(--background-gray); display: flex; flex-direction: column; text-align: center; }
-      .rectangle-a { width: 450px; background-color: var(--background-yellow); display: flex; flex-direction: column; text-align: center; color: white; }
-      .content { padding: 16px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 16px; }
-      .content > a { border: 1px solid white; width: 500px; height: 50px; padding: 16px; border-radius: 3rem; max-width: 150px; display: flex; justify-content: center; align-items: center; }
-      .triangle { width: 0; height: 0; border-top: 30px solid var(--background-gray); border-right: 225px solid transparent; border-bottom: 0px solid transparent; border-left: 225px solid transparent; }
-      .triangle-a { width: 0; height: 0; border-top: 0px solid transparent; border-right: 225px solid transparent; border-bottom: 30px solid var(--background-yellow); border-left: 225px solid transparent; }
-      .whatever { display: flex; flex-direction: column; gap: 16px; }
-      .whatever-line { display: flex; flex-direction: row; gap: 30px; }
-      .whatever-title { display: flex; flex-direction: column; margin: 20px; }
-      .whatever-decoration { display: flex; flex-direction: row; }
-      .whatever-rect { width: 200px; height: 6px; background-color: #293b8f; }
-      .whatever-triangle { width: 0; height: 0; border-top: 0px solid transparent; border-right: 3px solid transparent; border-bottom: 8px solid #293b8f; border-left: 3px solid transparent; transform: rotate(90deg) translateX(-1px); }
-      .whatever-content { background-color: #293b8f; display: flex; align-items: center; justify-content: center; padding: 16px 32px; border-radius: 3rem; width: 200px; height: 50px; color: white; }
-      #linkModal {
-        display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center;
-      }
-      .modal-content {
-        background-color: white; padding: 20px; border-radius: 10px; width: 90%; max-width: 500px; max-height: 80%; overflow-y: auto; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      }
-      .modal-close {
-        position: absolute; top: 10px; right: 10px; font-size: 24px; color: #888; cursor: pointer; transition: color 0.3s ease;
-      }
-      .modal-close:hover { color: #333; }
-      .modal-links { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
-      .modal-link { background-color: #f1f1f1; padding: 10px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; transition: background-color 0.3s ease; }
-      .modal-link:hover { background-color: #e1e1e1; }
-      .modal-link a { color: #0066cc; text-decoration: underline; cursor: pointer; margin-right: 10px; transition: color 0.3s ease; }
-      .modal-link a:hover { color: #004080; }
-      .documents-badge {
-        position: relative;
-        display: inline-block;
-      }
-      .documents-badge::after {
-        content: attr(data-count);
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        background-color: #ff4500;
-        color: white;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        font-weight: bold;
-        /* Only display badges on elements with data-count attribute */
-        display: none;
-      }
-      /* Show badge only when data-count is set */
-      .documents-badge[data-count]::after {
-        display: flex;
-      }
-   </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EU4Dual Process Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:      #1a3668;
+    --navy-mid:  #2452a0;
+    --cyan:      #00b4e6;
+    --cyan-lt:   #e0f6fd;
+    --green:     #00c896;
+    --green-lt:  #e0faf3;
+    --bg:        #f4f7fc;
+    --border:    #dde4ef;
+    --text:      #1a2a45;
+    --muted:     #6b7fa3;
+  }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── TOP HEADER BAR ── */
+  .top-bar {
+    background: var(--navy);
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .top-bar .logo-mark {
+    width: 42px; height: 42px;
+    background: rgba(255,255,255,.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: #fff; font-weight: 700;
+  }
+  .top-bar h1 {
+    font-size: 18px; font-weight: 600;
+    color: #fff; letter-spacing: .02em;
+  }
+
+  /* ── CONTENT WRAP ── */
+  .wrap {
+    padding: 28px 24px 36px;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* ── SECTION BLOCK ── */
+  .section-block {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 14px rgba(26,54,104,.07);
+    overflow: hidden;
+  }
+
+  /* Section title strip */
+  .section-strip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 20px;
+  }
+  .strip-mgmt {
+    background: linear-gradient(90deg, #dce8fb, #eef4fd);
+    border-bottom: 2px solid #b8cef0;
+  }
+  .strip-core {
+    background: linear-gradient(90deg, var(--navy), var(--navy-mid));
+  }
+  .strip-supp {
+    background: linear-gradient(90deg, #00a87a, var(--green));
+  }
+
+  .strip-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+  .strip-mgmt .strip-num  { background: var(--navy); color: #fff; }
+  .strip-core .strip-num  { background: rgba(255,255,255,.15); color: #fff; }
+  .strip-supp .strip-num  { background: rgba(255,255,255,.2); color: #fff; }
+
+  .strip-title {
+    font-size: 11.5px; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase;
+  }
+  .strip-mgmt .strip-title { color: var(--navy); }
+  .strip-core .strip-title { color: #fff; }
+  .strip-supp .strip-title { color: #fff; }
+
+  /* ── MANAGEMENT BODY ── */
+  .mgmt-body {
+    padding: 16px 18px 18px;
+    display: flex;
+    gap: 12px;
+  }
+
+  .mgmt-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mgmt-col-title {
+    font-size: 10px; font-weight: 700;
+    color: var(--muted); text-transform: uppercase;
+    letter-spacing: .05em; padding-bottom: 6px;
+    border-bottom: 2px solid var(--cyan);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .mgmt-col-title .col-num {
+    background: var(--cyan); color: #fff;
+    border-radius: 4px; padding: 1px 5px;
+    font-size: 9px;
+  }
+
+  .mgmt-pill {
+    display: block;
+    background: #f0f6ff;
+    border: 1.5px solid #c5d8f5;
+    border-radius: 50px;
+    padding: 7px 11px;
+    font-size: 10px; font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.35;
+    cursor: pointer;
+    position: relative;
+    transition: all .17s;
+  }
+  .mgmt-pill:hover {
+    background: var(--cyan-lt);
+    border-color: var(--cyan);
+    box-shadow: 0 2px 10px rgba(0,180,230,.15);
+    transform: translateY(-1px);
+  }
+
+  /* ── CORE BODY ── */
+  .core-body {
+    padding: 0 20px;
+  }
+
+  .core-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .core-row:last-child { border-bottom: none; }
+
+  .core-lbl {
+    width: 148px; min-width: 148px;
+    font-size: 10.5px; font-weight: 700;
+    color: var(--navy); line-height: 1.35;
+    padding-right: 10px;
+    border-right: 3px solid var(--cyan);
+  }
+
+  .core-pills {
+    display: flex; flex-wrap: wrap;
+    gap: 7px; flex: 1;
+    align-items: center;
+  }
+
+  .core-pill {
+    display: inline-block;
+    background: var(--navy);
+    border-radius: 50px;
+    padding: 7px 14px;
+    font-size: 10px; font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    text-align: center; line-height: 1.3;
+    cursor: pointer; position: relative;
+    transition: all .17s;
+  }
+  .core-pill:hover {
+    background: var(--navy-mid);
+    box-shadow: 0 3px 12px rgba(26,54,104,.25);
+    transform: translateY(-1px);
+  }
+
+  /* ── SUPPORT BODY ── */
+  .supp-body {
+    padding: 16px 18px 18px;
+    display: flex;
+    gap: 12px;
+  }
+
+  .supp-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .supp-col-title {
+    font-size: 10px; font-weight: 700;
+    color: #00836a; text-transform: uppercase;
+    letter-spacing: .05em; padding-bottom: 6px;
+    border-bottom: 2px solid var(--green);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .supp-col-title .col-num {
+    background: var(--green); color: #fff;
+    border-radius: 4px; padding: 1px 5px;
+    font-size: 9px;
+  }
+
+  .supp-pill {
+    display: block;
+    background: #f0fdf8;
+    border: 1.5px solid #a8e8d8;
+    border-radius: 50px;
+    padding: 7px 11px;
+    font-size: 10px; font-weight: 600;
+    color: #005c49;
+    text-decoration: none;
+    text-align: center; line-height: 1.35;
+    cursor: pointer; position: relative;
+    transition: all .17s;
+  }
+  .supp-pill:hover {
+    background: var(--green-lt);
+    border-color: var(--green);
+    box-shadow: 0 2px 10px rgba(0,200,150,.18);
+    transform: translateY(-1px);
+  }
+
+  /* Spacer cols */
+  .supp-spacer { flex: 1.5; }
+
+  /* ── DOC COUNT DOT ── */
+  .doc-dot {
+    position: absolute;
+    top: -6px; right: -5px;
+    background: #e53e3e;
+    color: #fff;
+    font-size: 8px; font-weight: 700;
+    border-radius: 50%;
+    min-width: 15px; height: 15px;
+    line-height: 15px; text-align: center;
+    padding: 0 3px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.25);
+    pointer-events: none;
+  }
+
+  /* ── MODAL ── */
+  #linkModal {
+    display: none; position: fixed; inset: 0;
+    background: rgba(10,20,50,.45);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  #linkModal.open { display: flex; }
+
+  .modal-box {
+    background: #fff; border-radius: 14px;
+    padding: 26px 30px; max-width: 530px; width: 100%;
+    box-shadow: 0 24px 60px rgba(26,54,104,.22);
+    position: relative;
+    animation: mUp .2s ease;
+  }
+  @keyframes mUp {
+    from { opacity:0; transform:translateY(14px) scale(.97); }
+    to   { opacity:1; transform:none; }
+  }
+
+  /* accent line top */
+  .modal-box::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--navy), var(--cyan));
+    border-radius: 14px 14px 0 0;
+  }
+
+  .modal-close {
+    position: absolute; top: 14px; right: 16px;
+    background: none; border: none;
+    font-size: 20px; color: #aaa; cursor: pointer;
+    border-radius: 6px; padding: 2px 7px;
+    transition: background .15s;
+  }
+  .modal-close:hover { background: #f0f4fb; color: #333; }
+
+  #modalTitle {
+    font-size: 15px; font-weight: 700;
+    color: var(--navy); margin-bottom: 3px;
+    padding-right: 26px;
+  }
+  .modal-key {
+    font-size: 11px; color: var(--cyan);
+    margin-bottom: 18px; font-family: monospace;
+    font-weight: 600;
+  }
+  .modal-links { display: flex; flex-direction: column; gap: 9px; }
+
+  .modal-doc-row {
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 12px;
+    padding: 11px 15px;
+    border-radius: 9px;
+    background: #f5f8ff;
+    border: 1px solid #dde8fa;
+    transition: border-color .15s;
+  }
+  .modal-doc-row:hover { border-color: var(--cyan); }
+  .modal-doc-row span { font-size: 12.5px; color: #334; flex: 1; line-height: 1.4; }
+  .modal-doc-row a {
+    font-size: 11px; font-weight: 700;
+    color: var(--navy); text-decoration: none;
+    padding: 5px 13px; border-radius: 6px;
+    border: 1.5px solid var(--navy);
+    white-space: nowrap; flex-shrink: 0;
+    transition: all .15s;
+  }
+  .modal-doc-row a:hover { background: var(--navy); color: #fff; }
+  .modal-empty { text-align: center; padding: 22px; color: #bbb; font-size: 13px; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <section class="page" id="diagram">
-            <a class="chapter" id="hax">1. Management Process</a>
-            <div class="title-row">
-                <div class="title-item">
-                    <div class="rectangle">
-                        <div class="content">
-                            <a data-key="1.1.1" class="documents-badge">1.1.1 Strategy, Vision & Mission</a>
-                            <a data-key="1.1.2" class="documents-badge">1.1.2 Financing & Funding</a>
-                        </div>
-                        <p><b>1.1 Strategic Planning & Controlling</b></p>
-                    </div>
-                    <div class='triangle'></div>
-                </div>
-                <div class="title-item">
-                    <div class="rectangle">
-                        <div class="content">
-                            <a data-key="1.2.1" class="documents-badge">1.2.1 Quality Management Accreditation</a>
-                            <a data-key="1.2.2" class="documents-badge">1.2.2 Governance & Policy</a>
-                            <a data-key="1.2.3" class="documents-badge">1.2.3 Reporting & KPI</a>
-                            <a data-key="1.2.4" class="documents-badge">1.2.4 Healthy & Safety at Work</a>
-                            <a data-key="1.2.5" class="documents-badge">1.2.5 Environmental Management</a>
-                        </div>
-                        <p><b>1.2 Governance & Management</b></p>
-                    </div>
-                    <div class='triangle'></div>
-                </div>
-                <div class="title-item">
-                    <div class="rectangle">
-                        <div class="content">
-                            <a data-key="1.3.1" class="documents-badge">1.3.1 Study Programs</a>
-                            <a data-key="1.3.2" class="documents-badge">1.3.2 Research Portfolio</a>
-                            <a data-key="1.3.3" class="documents-badge">1.3.3 LLL</a>
-                        </div>
-                        <p><b>1.3 Develop Programs</b></p>
-                    </div>
-                    <div class='triangle'></div>
-                </div>
-                <div class="title-item">
-                    <div class="rectangle">
-                        <div class="content">
-                            <a data-key="1.4.1" class="documents-badge">1.4.1 Internationalisation (Attracting Talents)</a>
-                            <a data-key="1.4.2" class="documents-badge">1.4.2 Dual Partnership</a>
-                            <a data-key="1.4.3" class="documents-badge">1.4.3 Strategic Partnership</a>
-                        </div>
-                        <p><b>1.4 Cooperation & Partnership</b></p>
-                    </div>
-                    <div class='triangle'></div>
-                </div>
-                <div class="title-item">
-                    <div class="rectangle">
-                        <div class="content">
-                            <a data-key="1.5.1" class="documents-badge">1.5.1 Staff Resources</a>
-                        </div>
-                        <p><b>1.5 Staff Resources</b></p>
-                    </div>
-                    <div class='triangle'></div>
-                </div>
-            </div>
-            <a class="chapter" style="background-color: #293b8f; color: white">2. Core Processes</a>
-            <div class="whatever">
-                <div class="whatever-line">
-                    <div class="whatever-title">
-                        <p><b>2.1 Education & Teaching</b></p>
-                        <div class="whatever-decoration">
-                            <div class="whatever-rect"></div>
-                            <div class="whatever-triangle"></div>
-                        </div>
-                    </div>
-                    <a data-key="2.1.1" class="whatever-content documents-badge">2.1.1 Joint Dual Masters</a>
-                    <a data-key="2.1.2" class="whatever-content documents-badge">2.1.2 Plan, Conduct & Evaluate Ind. PhD Programs</a>
-                    <a data-key="2.1.3" class="whatever-content documents-badge">2.1.3 Dual Study Partnership Management</a>
-                    <a data-key="2.1.4" class="whatever-content documents-badge">2.1.4 Student Mobility</a>
-                    <a data-key="2.1.5" class="whatever-content documents-badge">2.1.5 Regular Joint/Double Degrees</a>
-                    <a data-key="2.1.6" class="whatever-content documents-badge">2.1.6 Supervise Learning</a>
-                </div>
-                <div class="whatever-line">
-                    <div class="whatever-title">
-                        <p><b>2.2 Life Long Learning</b></p>
-                        <div class="whatever-decoration">
-                            <div class="whatever-rect"></div>
-                            <div class="whatever-triangle"></div>
-                        </div>
-                    </div>
-                    <a data-key="2.2.1" class="whatever-content documents-badge">2.2.1 Management of Standard Courses</a>
-                    <a data-key="2.2.2" class="whatever-content documents-badge">2.2.2 Management of Tailored Courses</a>
-                </div>
-                <div class="whatever-line">
-                    <div class="whatever-title">
-                        <p><b>2.3 Cooperative <br>Research & Development</b></p>
-                        <div class="whatever-decoration">
-                            <div class="whatever-rect"></div>
-                            <div class="whatever-triangle"></div>
-                        </div>
-                    </div>
-                    <a data-key="2.3.1" class="whatever-content documents-badge">2.3.1 Plan & Coordinate Research Project Funded by Public Administration</a>
-                    <a data-key="2.3.2" class="whatever-content documents-badge">2.3.2 Plan & Coordinate Research Project Financed by Industrial Partners</a>
-                    <a data-key="2.3.3" class="whatever-content documents-badge">2.3.3 Valorisation of R&D Results (Patenting, Spin Off, Publication)</a>
-                    <a data-key="2.3.4" class="whatever-content documents-badge">2.3.4 Shared Research Infrastructure/Creating an Open Science Infrastructure for DE</a>
-                </div>
-                <div class="whatever-line">
-                    <div class="whatever-title">
-                        <p><b>2.4 Dissemination <br>& Transfer of Knowledge</b></p>
-                        <div class="whatever-decoration">
-                            <div class="whatever-rect"></div>
-                            <div class="whatever-triangle"></div>
-                        </div>
-                    </div>
-                    <a data-key="2.4.1" class="whatever-content documents-badge">2.4.1 Conference & Events</a>
-                    <a data-key="2.4.2" class="whatever-content documents-badge">2.4.2 EU4Dual Journal</a>
-                    <a data-key="2.4.3" class="whatever-content documents-badge">2.4.3 Research & Innovation Challenge Prizes</a>
-                </div>
-                <div class="whatever-line">
-                    <div class="whatever-title">
-                        <p><b>2.5 Entrepreneurship</b></p>
-                        <div class="whatever-decoration">
-                            <div class="whatever-rect"></div>
-                            <div class="whatever-triangle"></div>
-                        </div>
-                    </div>
-                    <a data-key="2.5.1" class="whatever-content documents-badge">2.5.1 Incubator Network</a>
-                    <a data-key="2.5.2" class="whatever-content documents-badge">2.5.2 International Pathway</a>
-                    <a data-key="2.5.3" class="whatever-content documents-badge">2.5.3 Local Pathway</a>
-                </div>
-            </div>
-            <a class="chapter" id="hax-2" style="background-color: #c99005; color: white">3. Support Processes</a>
-            <div class="title-row">
-                <div class="title-item">
-                    <div class='triangle-a'></div>
-                    <div class="rectangle-a">
-                        <p><b>3.1 Communication & Marketing</b></p>
-                        <div class="content">
-                            <a data-key="3.1.1" class="documents-badge">3.1.1 Communication & Marketing</a>
-                            <a data-key="3.1.2" class="documents-badge">3.1.2 Corporate Communication</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="title-item">
-                    <div class='triangle-a'></div>
-                    <div class="rectangle-a">
-                        <p><b>3.2 Services</b></p>
-                        <div class="content">
-                            <a data-key="3.2.1" class="documents-badge">3.2.1 Administration (Finance, HR, Controlling)</a>
-                            <a data-key="3.2.2" class="documents-badge">3.2.2 Staff Mobility (Admin, Researchers, Teachers)</a>
-                            <a data-key="3.2.3" class="documents-badge">3.2.3 IT Services</a>
-                            <a data-key="3.2.4" class="documents-badge">3.2.4 Student Support & Activities</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
 
-    <!-- Link Modal -->
-    <div id="linkModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle">Documents</h2>
-            <div id="modalLinks" class="modal-links"></div>
+<!-- ── HEADER ── -->
+<div class="top-bar">
+  <div class="logo-mark">⊹</div>
+  <h1>EU4Dual — Process Map</h1>
+</div>
+
+<div class="wrap">
+
+  <!-- ══════════════════════════════
+       1. MANAGEMENT PROCESS
+  ══════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-strip strip-mgmt">
+      <div class="strip-num">1</div>
+      <span class="strip-title">Management Process</span>
+    </div>
+    <div class="mgmt-body">
+
+      <div class="mgmt-col">
+        <div class="mgmt-col-title"><span class="col-num">1.1</span>Strategic Planning &amp; Controlling</div>
+        <a data-key="1.1.1" class="mgmt-pill documents-badge">1.1.1 Strategy, Vision &amp; Mission</a>
+        <a data-key="1.1.2" class="mgmt-pill documents-badge">1.1.2 Financing &amp; Funding</a>
+      </div>
+
+      <div class="mgmt-col">
+        <div class="mgmt-col-title"><span class="col-num">1.2</span>Governance &amp; Management</div>
+        <a data-key="1.2.1" class="mgmt-pill documents-badge">1.2.1 Quality Management Accreditation</a>
+        <a data-key="1.2.2" class="mgmt-pill documents-badge">1.2.2 Governance &amp; Policy</a>
+        <a data-key="1.2.3" class="mgmt-pill documents-badge">1.2.3 Reporting &amp; KPI</a>
+        <a data-key="1.2.4" class="mgmt-pill documents-badge">1.2.4 Healthy &amp; Safety at Work</a>
+        <a data-key="1.2.5" class="mgmt-pill documents-badge">1.2.5 Environmental Management</a>
+      </div>
+
+      <div class="mgmt-col">
+        <div class="mgmt-col-title"><span class="col-num">1.3</span>Develop Programs</div>
+        <a data-key="1.3.1" class="mgmt-pill documents-badge">1.3.1 Study Programs</a>
+        <a data-key="1.3.2" class="mgmt-pill documents-badge">1.3.2 Research Portfolio</a>
+        <a data-key="1.3.3" class="mgmt-pill documents-badge">1.3.3 LLL</a>
+      </div>
+
+      <div class="mgmt-col">
+        <div class="mgmt-col-title"><span class="col-num">1.4</span>Cooperation &amp; Partnership</div>
+        <a data-key="1.4.1" class="mgmt-pill documents-badge">1.4.1 Internationalisation (Attracting Talents)</a>
+        <a data-key="1.4.2" class="mgmt-pill documents-badge">1.4.2 Dual Partnership</a>
+        <a data-key="1.4.3" class="mgmt-pill documents-badge">1.4.3 Strategic Partnership</a>
+      </div>
+
+      <div class="mgmt-col">
+        <div class="mgmt-col-title"><span class="col-num">1.5</span>Staff Resources</div>
+        <a data-key="1.5.1" class="mgmt-pill documents-badge">1.5.1 Staff Resources</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       2. CORE PROCESSES
+  ══════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-strip strip-core">
+      <div class="strip-num">2</div>
+      <span class="strip-title">Core Processes</span>
+    </div>
+    <div class="core-body">
+
+      <div class="core-row">
+        <div class="core-lbl">2.1 Education &amp; Teaching</div>
+        <div class="core-pills">
+          <a data-key="2.1.1" class="core-pill documents-badge">2.1.1 Joint Dual Masters</a>
+          <a data-key="2.1.2" class="core-pill documents-badge">2.1.2 Plan, Conduct &amp; Evaluate Ind. PhD Programs</a>
+          <a data-key="2.1.3" class="core-pill documents-badge">2.1.3 Dual Study Partnership Management</a>
+          <a data-key="2.1.4" class="core-pill documents-badge">2.1.4 Student Mobility</a>
+          <a data-key="2.1.5" class="core-pill documents-badge">2.1.5 Regular Joint/Double Degrees</a>
+          <a data-key="2.1.6" class="core-pill documents-badge">2.1.6 Supervise Learning</a>
         </div>
+      </div>
+
+      <div class="core-row">
+        <div class="core-lbl">2.2 Life Long Learning</div>
+        <div class="core-pills">
+          <a data-key="2.2.1" class="core-pill documents-badge">2.2.1 Management of Standard Courses</a>
+          <a data-key="2.2.2" class="core-pill documents-badge">2.2.2 Management of Tailored Courses</a>
+        </div>
+      </div>
+
+      <div class="core-row">
+        <div class="core-lbl">2.3 Cooperative Research &amp; Development</div>
+        <div class="core-pills">
+          <a data-key="2.3.1" class="core-pill documents-badge">2.3.1 Plan &amp; Coordinate Research Project Funded by Public Administration</a>
+          <a data-key="2.3.2" class="core-pill documents-badge">2.3.2 Plan &amp; Coordinate Research Project Financed by Industrial Partners</a>
+          <a data-key="2.3.3" class="core-pill documents-badge">2.3.3 Valorisation of R&amp;D Results (Patenting, Spin Off, Publication)</a>
+          <a data-key="2.3.4" class="core-pill documents-badge">2.3.4 Shared Research Infrastructure / Open Science Infrastructure for DE</a>
+        </div>
+      </div>
+
+      <div class="core-row">
+        <div class="core-lbl">2.4 Dissemination &amp; Transfer of Knowledge</div>
+        <div class="core-pills">
+          <a data-key="2.4.1" class="core-pill documents-badge">2.4.1 Conference &amp; Events</a>
+          <a data-key="2.4.2" class="core-pill documents-badge">2.4.2 EU4Dual Journal</a>
+          <a data-key="2.4.3" class="core-pill documents-badge">2.4.3 Research &amp; Innovation Challenge Prizes</a>
+        </div>
+      </div>
+
+      <div class="core-row">
+        <div class="core-lbl">2.5 Entrepreneurship</div>
+        <div class="core-pills">
+          <a data-key="2.5.1" class="core-pill documents-badge">2.5.1 Incubator Network</a>
+          <a data-key="2.5.2" class="core-pill documents-badge">2.5.2 International Pathway</a>
+          <a data-key="2.5.3" class="core-pill documents-badge">2.5.3 Local Pathway</a>
+        </div>
+      </div>
+
     </div>
+  </div>
 
-    <script>
-        // Global variable to store document data
-        let documentData = [];
+  <!-- ══════════════════════════════
+       3. SUPPORT PROCESSES
+  ══════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-strip strip-supp">
+      <div class="strip-num">3</div>
+      <span class="strip-title">Support Processes</span>
+    </div>
+    <div class="supp-body">
 
-        // Load the document configuration from a JSON file
-        async function loadDocumentConfig() {
-            try {
-                const response = await fetch('https://eu4dual-process-documents.s3.eu-central-1.amazonaws.com/config/documents-config.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const config = await response.json();
-                documentData = config.documents;
-                
-                // After loading documents, update the document counts
-                updateDocumentCounts();
-            } catch (error) {
-                console.error('Error loading document config:', error);
-                // If unable to load config, show error in console but don't break the page
-            }
-        }
+      <div class="supp-col">
+        <div class="supp-col-title"><span class="col-num">3.1</span>Communication &amp; Marketing</div>
+        <a data-key="3.1.1" class="supp-pill documents-badge">3.1.1 Communication &amp; Marketing</a>
+        <a data-key="3.1.2" class="supp-pill documents-badge">3.1.2 Corporate Communication</a>
+      </div>
 
-        // Update document count badges
-        function updateDocumentCounts() {
-            // Create a counter object for each section
-            const sectionCounts = {};
-            
-            // Count documents for each section
-            documentData.forEach(doc => {
-                if (!sectionCounts[doc.sectionKey]) {
-                    sectionCounts[doc.sectionKey] = 0;
-                }
-                sectionCounts[doc.sectionKey]++;
-            });
-            
-            // Update badges
-            document.querySelectorAll('[data-key]').forEach(element => {
-                const sectionKey = element.getAttribute('data-key');
-                const count = sectionCounts[sectionKey] || 0;
-                
-                if (count > 0) {
-                    // Only set data-count for sections with documents
-                    element.setAttribute('data-count', count);
-                } else {
-                    // Remove data-count attribute for sections without documents
-                    element.removeAttribute('data-count');
-                }
-            });
-        }
+      <div class="supp-col">
+        <div class="supp-col-title"><span class="col-num">3.2</span>Services</div>
+        <a data-key="3.2.1" class="supp-pill documents-badge">3.2.1 Administration (Finance, HR, Controlling)</a>
+        <a data-key="3.2.2" class="supp-pill documents-badge">3.2.2 Staff Mobility (Admin, Researchers, Teachers)</a>
+        <a data-key="3.2.3" class="supp-pill documents-badge">3.2.3 IT Services</a>
+        <a data-key="3.2.4" class="supp-pill documents-badge">3.2.4 Student Support &amp; Activities</a>
+      </div>
 
-        // Diagram Resizing Function
-        function resizeDiagram() {
-            const diagram = document.getElementById('diagram');
-            const container = document.querySelector('.container');
+      <div class="supp-spacer"></div>
+      <div class="supp-spacer"></div>
+      <div class="supp-spacer"></div>
 
-            const scaleX = container.clientWidth / diagram.scrollWidth;
-            const scaleY = container.clientHeight / diagram.scrollHeight;
-            const scale = Math.min(scaleX, scaleY);
+    </div>
+  </div>
 
-            diagram.style.transform = `scale(${scale})`;
-            diagram.style.left = `${(container.clientWidth - diagram.scrollWidth * scale) / 2}px`;
-            diagram.style.top = `${(container.clientHeight - diagram.scrollHeight * scale) / 2}px`;
-        }
+</div><!-- /wrap -->
 
-        // Open Modal Function
-        function openModal(buttonText, sectionKey) {
-            const modal = document.getElementById('linkModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalLinks = document.getElementById('modalLinks');
+<!-- ── MODAL ── -->
+<div id="linkModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2 id="modalTitle"></h2>
+    <div class="modal-key" id="modalKey"></div>
+    <div id="modalLinks" class="modal-links"></div>
+  </div>
+</div>
 
-            // Set title
-            modalTitle.textContent = `${buttonText} - Documents`;
+<script>
+  let documentData = [];
 
-            // Clear previous links
-            modalLinks.innerHTML = '';
+  async function loadDocumentConfig() {
+    try {
+      const res = await fetch('https://eu4dual-process-documents.s3.eu-central-1.amazonaws.com/config/documents-config.json');
+      if (!res.ok) throw new Error();
+      const cfg = await res.json();
+      documentData = cfg.documents;
+      updateCounts();
+    } catch(e) {
+      console.warn('Could not load document config:', e);
+    }
+  }
 
-            // Filter documents for this section
-            const sectionDocuments = documentData.filter(doc => doc.sectionKey === sectionKey);
+  function updateCounts() {
+    const counts = {};
+    documentData.forEach(d => { counts[d.sectionKey] = (counts[d.sectionKey] || 0) + 1; });
+    document.querySelectorAll('[data-key]').forEach(el => {
+      el.querySelector('.doc-dot')?.remove();
+      const n = counts[el.getAttribute('data-key')] || 0;
+      if (n > 0) {
+        const dot = document.createElement('span');
+        dot.className = 'doc-dot';
+        dot.textContent = n;
+        el.appendChild(dot);
+      }
+    });
+  }
 
-            // Add links if they exist
-            if (sectionDocuments && sectionDocuments.length > 0) {
-                sectionDocuments.forEach((doc, index) => {
-                    const linkElement = document.createElement('div');
-                    linkElement.classList.add('modal-link');
-                    linkElement.innerHTML = `
-                        <span>${doc.fileName}</span>
-                        <a href="${doc.fileLink}" target="_blank">Open Document</a>
-                    `;
-                    modalLinks.appendChild(linkElement);
-                });
-            } else {
-                const noLinksElement = document.createElement('p');
-                noLinksElement.textContent = 'No documents available for this item.';
-                modalLinks.appendChild(noLinksElement);
-            }
+  function openModal(title, key) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalKey').textContent = key;
+    const wrap = document.getElementById('modalLinks');
+    wrap.innerHTML = '';
+    const docs = documentData.filter(d => d.sectionKey === key);
+    if (docs.length) {
+      docs.forEach(doc => {
+        const row = document.createElement('div');
+        row.className = 'modal-doc-row';
+        row.innerHTML = `<span>${doc.fileName}</span><a href="${doc.fileLink}" target="_blank">Open ↗</a>`;
+        wrap.appendChild(row);
+      });
+    } else {
+      wrap.innerHTML = '<p class="modal-empty">No documents available for this item yet.</p>';
+    }
+    document.getElementById('linkModal').classList.add('open');
+  }
 
-            // Show modal
-            modal.style.display = 'flex';
-        }
+  function closeModal() {
+    document.getElementById('linkModal').classList.remove('open');
+  }
 
-        // Close Modal Function
-        function closeModal() {
-            const modal = document.getElementById('linkModal');
-            modal.style.display = 'none';
-        }
-
-        // Event Listeners and Initialization
-        document.addEventListener('DOMContentLoaded', () => {
-            // Load document configuration
-            loadDocumentConfig();
-
-            // Use event delegation to handle clicks on links with data-key attribute
-            document.querySelector('.container').addEventListener('click', (e) => {
-                if (e.target.tagName === 'A' && e.target.hasAttribute('data-key')) {
-                    e.preventDefault();
-                    const sectionKey = e.target.getAttribute('data-key');
-                    openModal(e.target.textContent, sectionKey);
-                }
-            });
-
-            // Close modal when clicking outside of it
-            const modal = document.getElementById('linkModal');
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModal();
-                }
-            });
-
-            // Initial diagram resize
-            resizeDiagram();
-        });
-
-        // Resize event listener
-        window.addEventListener('resize', resizeDiagram);
-    </script>
+  document.addEventListener('DOMContentLoaded', () => {
+    loadDocumentConfig();
+    document.body.addEventListener('click', e => {
+      const el = e.target.closest('[data-key]');
+      if (el) {
+        e.preventDefault();
+        const dot = el.querySelector('.doc-dot');
+        const title = el.innerText.replace(dot ? dot.textContent : '', '').trim();
+        openModal(title, el.getAttribute('data-key'));
+      }
+    });
+    document.getElementById('linkModal').addEventListener('click', e => {
+      if (e.target === document.getElementById('linkModal')) closeModal();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  });
+</script>
 </body>
 </html>
