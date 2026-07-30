@@ -503,7 +503,7 @@
 
   async function loadDocumentConfig() {
     try {
-      const res = await fetch('https://eu4dual-process-documents.s3.eu-central-1.amazonaws.com/config/documents-config.json');
+      const res = await fetch('process-map-config.json');
       if (!res.ok) throw new Error();
       const cfg = await res.json();
       documentData = cfg.documents;
