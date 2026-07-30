@@ -1,0 +1,61 @@
+/* Add padding to the body */
+body {
+  padding: 20px; /* Adjust the padding as needed */
+  margin: 0; /* Reset margin to avoid any default browser margin */
+}
+
+/* Style for the card container */
+.uk-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+  border: 2px solid transparent; /* Add a transparent border by default */
+}
+
+/* Hover effect for the card */
+.uk-card:hover {
+  transform: scale(1.03); /* Slightly enlarge the card */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); /* Add shadow */
+  border-color: #f9ad4e; /* Change border color on hover */
+}
+
+/* Style for the card title */
+.uk-card-title {
+  color: #FF9900 !important;
+  font-weight: bold !important;
+  font-size: 1.3em !important;
+}
+
+
+/* Style for the card body */
+.uk-card-body {
+  flex-grow: 1; /* Make the body take up the remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style for the paragraph inside the card body */
+.uk-card-body p {
+  flex-grow: 1; /* Make the paragraph take up the remaining space */
+  margin-bottom: 20px; /* Add space at the bottom */
+  text-align: justify; /* Justify text */
+  color: #4f5ba4; /* Set text color */
+}
+
+/* Style for the card footer */
+.uk-card-footer {
+  margin-top: auto; /* Push the footer to the bottom */
+}
+
+/* Style for the link inside the card footer */
+.uk-card-footer a {
+  color: #2b3991; /* Link color */
+  font-weight: bold; /* Bold link */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the link */
+.uk-card-footer a:hover {
+  text-decoration: underline; /* Underline link on hover */
+}
