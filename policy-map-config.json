@@ -1,0 +1,29 @@
+{
+  "documents": [
+    {
+      "fileName": "Products Report",
+      "fileLink": "https://eu4dual.knowledgeinnovation.eu/#Report:Deliverables_Kanban_Report",
+      "sectionKey": "2.1.1"
+    },
+    {
+      "fileName": "Impact Reports",
+      "fileLink": "https://eu4dual.knowledgeinnovation.eu/#Page:Process_Map",
+      "sectionKey": "3.2.1"
+    },
+    {
+      "fileName": "Process Landscape",
+      "fileLink": "https://eu4dual.knowledgeinnovation.eu/#Page:Process_Map",
+      "sectionKey": "3.3.1"
+    },
+    {
+      "fileName": "KPIs Report",
+      "fileLink": "https://eu4dual.knowledgeinnovation.eu/#Report:KPIs_Report",
+      "sectionKey": "3.3.2"
+    },
+    {
+      "fileName": "Risk Management Report",
+      "fileLink": "https://eu4dual.knowledgeinnovation.eu/#Report:Risks_Report",
+      "sectionKey": "3.3.3"
+    }
+  ]
+}
